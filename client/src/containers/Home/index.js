@@ -1,18 +1,18 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import logo from '../../logo.svg';
+import './index.css';
 const ROOT_URL = process.env.REACT_APP_URL;
 console.log("working url", ROOT_URL);
 
-class App extends Component {
+class Home extends Component {
   render() {
     return (
-      <div className="App">
-        <div className="App-header">
+      <div className="Home">
+        <div className="Home-header">
           <img src={logo} className="App-logo" alt="logo" />
           <h2>Welcome to React</h2>
         </div>
-        <p className="App-intro">
+        <p className="Home-intro">
           To get started, edit <code>src/App.js</code> and save to reload.
         </p>
       </div>
@@ -20,4 +20,4 @@ class App extends Component {
   }
 }
 
-export default App;
+export default Home;
