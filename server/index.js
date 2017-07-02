@@ -1,18 +1,29 @@
 const express = require('express');
+const path = require('path');
 const session = require('express-session');
+const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
+const compression = require('compression');
 
 const morgan = require('morgan');
 
 const app = express();
 
 //DB connect~~~~~~~~~~~~~~~~~~~~
-mongoose.connect('mongodb://localhost:visionair');
+mongoose.connect('localhost:27017/visionair');
 
 
 //Express setup~~~~~~~~~~~~~~~~~
 app.use(morgan('dev'));
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true}));
 
+
+app.use(express.static(path.join(__dirname, 'public')));
+
+
+
+app.use(compression());
 
 app.use('/', require('./routes'));
 
@@ -23,5 +34,4 @@ let ascii ="VisionAir is up in the clouds            (  )\n"+"          _ .     
 
 const server = app.listen(port, function() {
     console.log(ascii);
-    console.log(mongoose.connection.readyState);
 });
