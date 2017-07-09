@@ -3,7 +3,7 @@ const router = express.Router();
 const passportService = require('../../auth/passport');
 const passport = require('passport');
 const jwt = require('jwt-simple');
-const config = require('../../../config');
+const config = require('../../config');
 
 
 //sign in user via passport local strategy
