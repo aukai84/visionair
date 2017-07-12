@@ -27,7 +27,7 @@ app.use(compression());
 
 app.use('/', require('./routes'));
 
-const port = process.env.PORT || 3000;
+const port = process.env.PORT || 8080;
 
 let ascii ="VisionAir is up in the clouds            (  )\n"+"          _ .                         ( `  ) . )\n"+"        (  _ )_                      (_, _(  ,_)_)\n"+"      (_  _(_ ,)";                                           
 

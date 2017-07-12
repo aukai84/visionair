@@ -6,7 +6,7 @@ const Item = require('../../models/item');
 //get all items
 router.get('/', function(req, res, next) {
     Item.find(function(err, items){
-        res.send(items);
+        res.json(items);
     });
 });
 
