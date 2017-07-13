@@ -14,7 +14,7 @@ var _Layout2 = _interopRequireDefault(_Layout);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var _jsxFileName = '/Users/matthewtirrell/Projects/visionair/client/pages/index.js?entry';
+var _jsxFileName = '/Users/matthewtirrell/Projects/visionair/client/pages/shop-all.js?entry';
 
 exports.default = function (props) {
     return _react2.default.createElement(_Layout2.default, {
@@ -27,5 +27,5 @@ exports.default = function (props) {
             fileName: _jsxFileName,
             lineNumber: 5
         }
-    }, 'This is the Home Page'));
+    }, 'This is the shopping page'));
 };
