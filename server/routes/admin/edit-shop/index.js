@@ -15,13 +15,7 @@ router.post('/new-item', function(req, res, next){
 
 });
 
-/*router.get('/delete/:id', function(req, res, next){
 
-    res.send({message: req.params.id});
-});*/
-
-//delete an item by id
-//~~~~~~~NOT WORKING!~~~~~
 router.delete('/delete/:id', function(req, res, next){
     const id = req.params.id;
 
