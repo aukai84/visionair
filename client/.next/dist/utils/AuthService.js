@@ -34,6 +34,7 @@ var AuthService = function () {
         this.fetch = this.fetch.bind(this);
         this.login = this.login.bind(this);
         this.getProfile = this.getProfile.bind(this);
+        this.logout = this.logout.bind(this);
     }
 
     (0, _createClass3.default)(AuthService, [{
@@ -57,7 +58,7 @@ var AuthService = function () {
             }).then(function (res) {
                 //set profile to admin(dickbutt) on local storage
                 console.log('profile res', res);
-                _this.setProfile(res);
+                _this.setProfile(res.profile);
                 return _promise2.default.resolve(res);
             });
         }
@@ -72,7 +73,7 @@ var AuthService = function () {
         key: 'setProfile',
         value: function setProfile(profile) {
             //saves profile data to localStorage
-            localStorage.setItem('profile', (0, _stringify2.default)({ profile: profile }));
+            localStorage.setItem('profile', (0, _stringify2.default)(profile));
         }
     }, {
         key: 'getProfile',

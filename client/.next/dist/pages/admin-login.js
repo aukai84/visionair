@@ -55,7 +55,7 @@ var Login = function (_Component) {
         key: 'componentDidMount',
         value: function componentDidMount() {
             if (auth.loggedIn()) {
-                this.props.url.replaceTo('/admin-edit'); //redirect if you are logged in
+                this.props.url.replace('/admin-edit'); //redirect if you are logged in
             }
         }
     }, {
@@ -67,7 +67,7 @@ var Login = function (_Component) {
             console.log(auth, "auth sevice");
             auth.login(this.refs.username.value, this.refs.password.value).then(function (res) {
                 console.log(res);
-                _this2.props.url.replaceTo('/admin-edit');
+                _this2.props.url.replace('/admin-edit');
             }).catch(function (e) {
                 return console.log(e);
             });

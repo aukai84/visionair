@@ -1,23 +1,28 @@
 import React, {Component} from 'react';
 import withAuth from '../utils/withAuth.js';
+import {Button} from 'reactstrap';
 
 class Dashboard extends Component {
-    logout(){
+    constructor(props){
+        super(props)
+    }
+
+    logout = () => {
         console.log('component logging out')
+        console.log('auth props', this.props)
         this.props.auth.logout();
-        this.props.url.replaceTo('/admin-login')
+        this.props.url.replace('/admin-login')
     }
 
     render(){
+        
         const user = this.props.auth.getProfile()
         return (
             <div>
                 <h1>This is the admin page</h1>
-                <p>Current user: {user.profile}</p>
-                <form onSubmit={this.logout}>
-                    <input type="submit" value="Logout"/>
-                </form>
-            </div>
+                <p>Current user: {user}</p>
+                <Button color="primary" onClick={this.logout}>Logout</Button>
+           </div>
         )
     }   
 }

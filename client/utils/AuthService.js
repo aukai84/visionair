@@ -4,6 +4,7 @@ export default class AuthService {
         this.fetch = this.fetch.bind(this)
         this.login = this.login.bind(this)
         this.getProfile = this.getProfile.bind(this)
+        this.logout = this.logout.bind(this)
     }
 
     login(username, password) {
@@ -24,7 +25,7 @@ export default class AuthService {
             }).then(res => {
                 //set profile to admin(dickbutt) on local storage
                 console.log('profile res', res)
-                this.setProfile(res)
+                this.setProfile(res.profile)
                 return Promise.resolve(res)
             })
     }
@@ -37,7 +38,7 @@ export default class AuthService {
 
     setProfile(profile){
         //saves profile data to localStorage
-        localStorage.setItem('profile', JSON.stringify({profile}))
+        localStorage.setItem('profile', JSON.stringify(profile))
     }
 
     getProfile(){

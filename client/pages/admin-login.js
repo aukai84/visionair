@@ -11,7 +11,7 @@ class Login extends Component {
 
     componentDidMount(){
         if(auth.loggedIn()){
-            this.props.url.replaceTo('/admin-edit') //redirect if you are logged in
+            this.props.url.replace('/admin-edit') //redirect if you are logged in
         }
     }
 
@@ -21,7 +21,7 @@ class Login extends Component {
         auth.login(this.refs.username.value, this.refs.password.value)
             .then(res => {
                 console.log(res)
-                this.props.url.replaceTo('/admin-edit')
+                this.props.url.replace('/admin-edit')
             })
             .catch (e => console.log(e))
     }
