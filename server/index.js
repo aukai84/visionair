@@ -4,6 +4,7 @@ const session = require('express-session');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const compression = require('compression');
+const cors = require('cors');
 
 const morgan = require('morgan');
 
@@ -24,6 +25,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 
 app.use(compression());
+app.use(cors());
 
 app.use('/', require('./routes'));
 

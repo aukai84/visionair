@@ -10,16 +10,6 @@ router.get('/', function(req, res, next) {
     });
 });
 
-/* Not needed if handling on client
-get shop-item by ID
-router.get('/item/:id', function(req, res, next) {
-    let id = req.params.id;
-    
-    Item.findById(id, function(err, items){
-        if(err) {}
-
-    });
-});*/
 
 
 
