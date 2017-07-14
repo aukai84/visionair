@@ -38,4 +38,56 @@ export default class AuthService {
         //saves profile data to localStorage
         localStorage.setItem('profile', JSON.stringify(profile))
     }
+
+    getProfile(){
+        //retrives current profile data from localStorage
+        const profile = localStorage.getItem('profile')
+        return profile ? JSON.parse(localStorage.profile) : {}
+    }
+
+    setToken(token){
+        //saves admin token to localStorage
+        localStorage.setItem('token', token)
+    }
+
+    getToken(){
+        //retrieve token from localStorage
+        return localStorage.getItem('token')
+    }
+
+    logout(){
+        //clear user token and profile from localStorage
+        localStorage.removeItem('token');
+        localStorage.removeItem('profile');
+    }
+
+    _checkStatus(response){
+        //raises error if response is not successful
+        if(response.status >= 200 && response.status < 300) {
+            return response
+        } else {
+            let error = new Error(response.statusText)
+            error.response = response
+            throw error
+        }
+    }
+
+    fetch(url, options){
+        //perform api call sending required auth headers
+        const headers = {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+        }
+
+        if(this.loggedIn()){
+            headers.authorization = this.getToken()
+        }
+
+        return fetch(url, {
+            headers,
+            ...options
+        })
+            .then(this._checkStatus)
+            .then(response => response.json())
+    }
 }
