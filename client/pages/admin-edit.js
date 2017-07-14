@@ -8,14 +8,12 @@ class Dashboard extends Component {
     }
 
     logout = () => {
-        console.log('component logging out')
-        console.log('auth props', this.props)
         this.props.auth.logout();
         this.props.url.replace('/admin-login')
     }
 
     render(){
-        
+        console.log('profile', this.props.auth.getProfile())        
         const user = this.props.auth.getProfile()
         return (
             <div>

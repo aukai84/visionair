@@ -57,7 +57,6 @@ var AuthService = function () {
                 });
             }).then(function (res) {
                 //set profile to admin(dickbutt) on local storage
-                console.log('profile res', res);
                 _this.setProfile(res.profile);
                 return _promise2.default.resolve(res);
             });

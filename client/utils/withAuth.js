@@ -13,14 +13,16 @@ export default function withAuth(AuthComponent) {
         }
 
         componentDidMount(){
-            if(!Auth.loggedIn()){
-                this.props.url.replace('/admin-edit')
+            //check if admin is logged in
+            if(Auth.loggedIn()){
+                this.setState({isLoading: false})
+            } else {
+                //route back to home if not logged in
+                this.props.url.replace('/')
             }
-            this.setState({isLoading:false})
         } 
         
         render(){
-            console.log('withauth props', this.props)
             return (
                 <div>
                 <Head>

@@ -48,8 +48,6 @@ var Dashboard = function (_Component) {
         var _this = (0, _possibleConstructorReturn3.default)(this, (Dashboard.__proto__ || (0, _getPrototypeOf2.default)(Dashboard)).call(this, props));
 
         _this.logout = function () {
-            console.log('component logging out');
-            console.log('auth props', _this.props);
             _this.props.auth.logout();
             _this.props.url.replace('/admin-login');
         };
@@ -60,26 +58,26 @@ var Dashboard = function (_Component) {
     (0, _createClass3.default)(Dashboard, [{
         key: 'render',
         value: function render() {
-
+            console.log('profile', this.props.auth.getProfile());
             var user = this.props.auth.getProfile();
             return _react2.default.createElement('div', {
                 __source: {
                     fileName: _jsxFileName,
-                    lineNumber: 21
+                    lineNumber: 19
                 }
             }, _react2.default.createElement('h1', {
                 __source: {
                     fileName: _jsxFileName,
-                    lineNumber: 22
+                    lineNumber: 20
                 }
             }, 'This is the admin page'), _react2.default.createElement('p', {
                 __source: {
                     fileName: _jsxFileName,
-                    lineNumber: 23
+                    lineNumber: 21
                 }
             }, 'Current user: ', user), _react2.default.createElement(_reactstrap.Button, { color: 'primary', onClick: this.logout, __source: {
                     fileName: _jsxFileName,
-                    lineNumber: 24
+                    lineNumber: 22
                 }
             }, 'Logout'));
         }

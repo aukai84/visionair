@@ -24,7 +24,6 @@ export default class AuthService {
                 })
             }).then(res => {
                 //set profile to admin(dickbutt) on local storage
-                console.log('profile res', res)
                 this.setProfile(res.profile)
                 return Promise.resolve(res)
             })

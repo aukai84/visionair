@@ -63,46 +63,48 @@ function withAuth(AuthComponent) {
         (0, _createClass3.default)(Authenticated, [{
             key: 'componentDidMount',
             value: function componentDidMount() {
-                if (!Auth.loggedIn()) {
-                    this.props.url.replace('/admin-edit');
+                //check if admin is logged in
+                if (Auth.loggedIn()) {
+                    this.setState({ isLoading: false });
+                } else {
+                    //route back to home if not logged in
+                    this.props.url.replace('/');
                 }
-                this.setState({ isLoading: false });
             }
         }, {
             key: 'render',
             value: function render() {
-                console.log('withauth props', this.props);
                 return _react2.default.createElement('div', {
-                    __source: {
-                        fileName: _jsxFileName,
-                        lineNumber: 25
-                    }
-                }, _react2.default.createElement(_head2.default, {
-                    __source: {
-                        fileName: _jsxFileName,
-                        lineNumber: 26
-                    }
-                }, _react2.default.createElement('title', {
                     __source: {
                         fileName: _jsxFileName,
                         lineNumber: 27
                     }
-                }, 'PairHub'), _react2.default.createElement('meta', { name: 'viewport', content: 'initial-scale=1.0, width=device-width', __source: {
+                }, _react2.default.createElement(_head2.default, {
+                    __source: {
                         fileName: _jsxFileName,
                         lineNumber: 28
                     }
-                }), _react2.default.createElement('link', { rel: 'stylesheet', href: 'https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css', __source: {
+                }, _react2.default.createElement('title', {
+                    __source: {
                         fileName: _jsxFileName,
                         lineNumber: 29
+                    }
+                }, 'PairHub'), _react2.default.createElement('meta', { name: 'viewport', content: 'initial-scale=1.0, width=device-width', __source: {
+                        fileName: _jsxFileName,
+                        lineNumber: 30
+                    }
+                }), _react2.default.createElement('link', { rel: 'stylesheet', href: 'https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css', __source: {
+                        fileName: _jsxFileName,
+                        lineNumber: 31
                     }
                 })), this.state.isLoading ? _react2.default.createElement('div', {
                     __source: {
                         fileName: _jsxFileName,
-                        lineNumber: 31
+                        lineNumber: 33
                     }
                 }, 'LOADING...') : _react2.default.createElement(AuthComponent, (0, _extends3.default)({}, this.props, { auth: Auth, __source: {
                         fileName: _jsxFileName,
-                        lineNumber: 32
+                        lineNumber: 34
                     }
                 })));
             }
