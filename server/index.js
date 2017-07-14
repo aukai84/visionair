@@ -4,7 +4,7 @@ const session = require('express-session');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const compression = require('compression');
-
+const cors = require('cors');
 const morgan = require('morgan');
 
 const app = express();
@@ -14,6 +14,7 @@ mongoose.connect('localhost:27017/visionair');
 
 
 //Express setup~~~~~~~~~~~~~~~~~
+app.use(cors());
 app.use(morgan('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true}));

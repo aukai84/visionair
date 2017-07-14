@@ -19,10 +19,11 @@ export default class AuthService {
                 //set token on client local storage
                 this.setToken(res.token)
                 return this.fetch(`${this.domain}/admin`,{
-                    method: 'GET
+                    method: 'GET'
                 })
             }).then(res => {
                 //set profile to admin(dickbutt) on local storage
+                console.log('profile res', res)
                 this.setProfile(res)
                 return Promise.resolve(res)
             })
@@ -31,12 +32,12 @@ export default class AuthService {
     loggedIn(){
         //checks if there is a saved token and if it is still valid
         const token = this.getToken();
-        return !!token && !isTokenExpired(token)  //handwaiving
+        return !!token //handwaiving
     }
 
     setProfile(profile){
         //saves profile data to localStorage
-        localStorage.setItem('profile', JSON.stringify(profile))
+        localStorage.setItem('profile', JSON.stringify({profile}))
     }
 
     getProfile(){
@@ -57,8 +58,9 @@ export default class AuthService {
 
     logout(){
         //clear user token and profile from localStorage
-        localStorage.removeItem('token');
-        localStorage.removeItem('profile');
+        localStorage.removeItem("token");
+        localStorage.removeItem("profile");
+        console.log('logged out...')
     }
 
     _checkStatus(response){
