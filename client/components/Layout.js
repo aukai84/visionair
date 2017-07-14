@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import Head from 'next/head'
 import { Container } from 'reactstrap'
 import { Collapse, Navbar, NavbarToggler, NavbarBrand, Nav, NavItem, NavLink } from 'reactstrap';
+import Link from 'next/link';
 
 export default class Layout extends Component {
   constructor(props) {
@@ -31,13 +32,13 @@ export default class Layout extends Component {
                   <Collapse isOpen={this.state.isOpen} navbar>
                     <Nav className="ml-auto" navbar>
                       <NavItem>
-                          <NavLink href="/shop-all">Shop All</NavLink>
+                          <Link href="/shop-all">Shop All</Link>
                       </NavItem>
                       <NavItem>
-                          <NavLink href="/info">Info</NavLink>
+                          <Link href="/info">Info</Link>
                       </NavItem>
                       <NavItem>
-                          <NavLink href="/cart">Cart</NavLink>
+                          <Link href="/cart">Cart</Link>
                       </NavItem>
                     </Nav>
                   </Collapse>

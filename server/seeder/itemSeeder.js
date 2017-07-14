@@ -13,42 +13,42 @@ mongoose.connect('localhost:27017/visionair');
 
 const items = [
     new Item({
-        imagePath:'http://source.unsplash.com/i7hULbsIiQo',
+        imagePath:'http://source.unsplash.com/i7hULbsIiQo.com',
         title:'Beachy stuff',
         location:'Oahu, Hawaii',
         inventory:10,
         price:250,
     }),
     new Item({
-        imagePath:'http://source.unsplash.com/JSv9uK-9ZUg',
+        imagePath:'http://source.unsplash.com/JSv9uK-9ZUg.com',
         title:'Beachy stuff',
         location:'Oahu, Hawaii',
         inventory:8,
         price:100,
     }),
     new Item({
-        imagePath:'http://source.unsplash.com/D_yGyGmk60w',
+        imagePath:'http://source.unsplash.com/D_yGyGmk60w.com',
         title:'Beachy stuff',
         location:'Oahu, Hawaii',
         inventory:20,
         price:300,
     }),
     new Item({
-        imagePath:'http://source.unsplash.com/j5QK3ZDRa-s',
+        imagePath:'http://source.unsplash.com/j5QK3ZDRa-s.com',
         title:'Beachy stuff',
         location:'Oahu, Hawaii',
         inventory:3,
         price:140,
     }),
     new Item({
-        imagePath:'http://source.unsplash.com/PLxJw-Z817I',
+        imagePath:'http://source.unsplash.com/PLxJw-Z817I.com',
         title:'Beachy stuff',
         location:'Oahu, Hawaii',
         inventory:23,
         price:70,
     }),
     new Item({
-        imagePath:'http://source.unsplash.com/t24k04BJAWg',
+        imagePath:'http://source.unsplash.com/t24k04BJAWg.com',
         title:'Beachy stuff',
         location:'Oahu, Hawaii',
         inventory:10,
