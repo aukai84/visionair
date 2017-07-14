@@ -47,7 +47,9 @@ const AdminStrategy = new JwtStrategy(jwtOptions, function(payload, done) {
             if(payload.admin){
                 done(null, user);
             }
-            done(null, false, {message: 'you are not the admin.'});
+            else {
+                done(null, false, {message: 'you are not the admin.'});
+            }
         }
         else {
             done(null, false);
