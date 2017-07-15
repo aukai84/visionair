@@ -13,8 +13,8 @@ const app = express();
 //DB connect~~~~~~~~~~~~~~~~~~~~
 mongoose.connect('localhost:27017/visionair');
 
-
 //Express setup~~~~~~~~~~~~~~~~~
+app.use(cors());
 app.use(morgan('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true}));
