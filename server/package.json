@@ -20,10 +20,13 @@
     "jwt-simple": "^0.5.1",
     "mongoose": "^4.10.8",
     "morgan": "^1.8.2",
+    "nodemailer": "^4.0.1",
     "passport": "^0.3.2",
     "passport-jwt": "^2.2.1",
     "passport-local": "^1.0.0",
-    "path": "^0.12.7"
+    "path": "^0.12.7",
+    "sendgrid": "^5.1.2",
+    "xoauth2": "^1.2.0"
   },
   "devDependencies": {
     "nodemon": "^1.11.0"

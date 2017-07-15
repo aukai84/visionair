@@ -8,16 +8,21 @@ const config = require('../../config');
 
 //sign in user via passport local strategy
 const signInUser = passport.authenticate('local', { session: false });
-const authenticatedAdmin = passport.authenticate('jwt', { session: false});
+const authenticatedAdmin = passport.authenticate('jwt', { session: false });
+
+//authentication testing route.
+router.get('/', authenticatedAdmin, function(req, res, next) {
+    res.send({ message: "Congrats you are an authenticated admin." });
+});
 
 //admin signin
 //should check users credentials
 //if PASS then create jwt token on res. 
-router.post('/signin', signInUser,  function(req, res, next) {
+router.post('/signin', signInUser, function(req, res, next) {
     const timestamp = new Date().getTime();
-    
-    const token = jwt.encode({sub: req.user.id, iat: timestamp, admin:true }, config.secret);
-    res.send({token: token});
+
+    const token = jwt.encode({ sub: req.user.id, iat: timestamp, admin: true }, config.secret);
+    res.send({ token: token });
 
 });
 
@@ -26,12 +31,9 @@ router.post('/signin', signInUser,  function(req, res, next) {
     res.send({message: 'congrats, you are an authenticated admin.'});
 });*/
 
-router.get('/', authenticatedAdmin, function(req, res, next){
-    res.send({message: "Congrats you are an authenticated admin."});
-});
-
+//sub authenticated routes:
 router.use('/edit-shop', authenticatedAdmin, require('./edit-shop'));
-
+router.use('/analytics', authenticatedAdmin, require('./analytics'));
 
 
 

@@ -7,6 +7,7 @@ router.get('/', function(req, res, next) {
 
 router.use('/shop', require('./shop'));
 router.use('/admin', require('./admin'));
+router.use('/mailer', require('./mailer'));
 
 
 module.exports = router;
