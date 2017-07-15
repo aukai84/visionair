@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import withAuth from '../utils/withAuth.js';
 import {Button} from 'reactstrap';
+import EditModal from '../components/EditModal.js';
 
 class Dashboard extends Component {
     constructor(props){
@@ -8,9 +9,10 @@ class Dashboard extends Component {
         this.state = {
             response: ''
         }
+        this.logout = this.logout.bind(this);
     }
 
-    logout = () => {
+    logout(){
         this.props.auth.logout();
         this.props.url.replace('/admin-login')
     }
@@ -32,6 +34,7 @@ class Dashboard extends Component {
                 <h1>This is the admin page</h1>
                 <p>Current user: {user}</p>
                 <p>Authenticated message: {message}</p>
+                <EditModal buttonLabel="Item 1">This will contain the CRUD</EditModal>
                 <Button color="primary" onClick={this.logout}>Logout</Button>
            </div>
         )
