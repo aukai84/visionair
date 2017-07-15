@@ -9,7 +9,6 @@ const config = require('../../config');
 //sign in user via passport local strategy
 const signInUser = passport.authenticate('local', { session: false });
 const authenticatedAdmin = passport.authenticate('jwt', { session: false});
-
 //admin signin
 //should check users credentials
 //if PASS then create jwt token on res. 
@@ -32,10 +31,10 @@ router.get('/', authenticatedAdmin, function(req, res, next){
 
 router.use('/edit-shop', authenticatedAdmin, require('./edit-shop'));
 
-
-
-
 //admin protected routes on the client will need to implement auth check with same token scheme generated on signin.
-
+//admin protected route to send client profile information
+router.get('/', authenticatedAdmin, (req, res, next) => {
+    res.json({profile: "dickbutt"})
+})
 
 module.exports = router;
