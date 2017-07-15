@@ -66,7 +66,7 @@ var AuthService = function () {
         value: function loggedIn() {
             //checks if there is a saved token and if it is still valid
             var token = this.getToken();
-            return !!token; //handwaiving
+            return !!token;
         }
     }, {
         key: 'setProfile',

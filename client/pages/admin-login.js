@@ -20,7 +20,7 @@ class Login extends Component {
         console.log(auth, "auth sevice") 
         auth.login(this.refs.username.value, this.refs.password.value)
             .then(res => {
-                console.log(res)
+                console.log("response from fetch", res)
                 this.props.url.replace('/admin-edit')
             })
             .catch (e => console.log(e))

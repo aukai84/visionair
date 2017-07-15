@@ -32,7 +32,7 @@ export default class AuthService {
     loggedIn(){
         //checks if there is a saved token and if it is still valid
         const token = this.getToken();
-        return !!token //handwaiving
+        return !!token  
     }
 
     setProfile(profile){

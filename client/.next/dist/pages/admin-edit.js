@@ -52,32 +52,51 @@ var Dashboard = function (_Component) {
             _this.props.url.replace('/admin-login');
         };
 
+        _this.state = {
+            response: ''
+        };
         return _this;
     }
 
     (0, _createClass3.default)(Dashboard, [{
+        key: 'componentDidMount',
+        value: function componentDidMount() {
+            var _this2 = this;
+
+            this.props.auth.fetch(this.props.auth.domain + '/admin/edit-shop', { method: 'GET' }).then(function (res) {
+                console.log('api res', res);
+                _this2.setState({ response: res.message });
+            });
+        }
+    }, {
         key: 'render',
         value: function render() {
             console.log('profile', this.props.auth.getProfile());
             var user = this.props.auth.getProfile();
+            var message = this.state.response;
             return _react2.default.createElement('div', {
                 __source: {
                     fileName: _jsxFileName,
-                    lineNumber: 19
+                    lineNumber: 31
                 }
             }, _react2.default.createElement('h1', {
                 __source: {
                     fileName: _jsxFileName,
-                    lineNumber: 20
+                    lineNumber: 32
                 }
             }, 'This is the admin page'), _react2.default.createElement('p', {
                 __source: {
                     fileName: _jsxFileName,
-                    lineNumber: 21
+                    lineNumber: 33
                 }
-            }, 'Current user: ', user), _react2.default.createElement(_reactstrap.Button, { color: 'primary', onClick: this.logout, __source: {
+            }, 'Current user: ', user), _react2.default.createElement('p', {
+                __source: {
                     fileName: _jsxFileName,
-                    lineNumber: 22
+                    lineNumber: 34
+                }
+            }, 'Authenticated message: ', message), _react2.default.createElement(_reactstrap.Button, { color: 'primary', onClick: this.logout, __source: {
+                    fileName: _jsxFileName,
+                    lineNumber: 35
                 }
             }, 'Logout'));
         }
