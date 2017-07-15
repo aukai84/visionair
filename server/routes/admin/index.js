@@ -25,6 +25,10 @@ router.post('/signin', signInUser,  function(req, res, next) {
     res.send({message: 'congrats, you are an authenticated admin.'});
 });*/
 
+router.get('/', authenticatedAdmin, function(req, res, next){
+    res.send({message: "Congrats you are an authenticated admin."});
+});
+
 router.use('/edit-shop', authenticatedAdmin, require('./edit-shop'));
 
 //admin protected routes on the client will need to implement auth check with same token scheme generated on signin.

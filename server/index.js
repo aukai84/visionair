@@ -5,13 +5,13 @@ const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const compression = require('compression');
 const cors = require('cors');
+
 const morgan = require('morgan');
 
 const app = express();
 
 //DB connect~~~~~~~~~~~~~~~~~~~~
 mongoose.connect('localhost:27017/visionair');
-
 
 //Express setup~~~~~~~~~~~~~~~~~
 app.use(cors());
@@ -25,6 +25,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 
 app.use(compression());
+app.use(cors());
 
 app.use('/', require('./routes'));
 
