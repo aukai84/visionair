@@ -24,6 +24,7 @@ router.delete('/delete/:id', function(req, res, next){
             res.send(err);
         }
         else {
+            console.log('deleted item...')
             res.send({message:"delete successful."});
         }
     }); 

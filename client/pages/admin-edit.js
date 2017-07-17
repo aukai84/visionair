@@ -12,11 +12,21 @@ class Dashboard extends Component {
             items: []
         }
         this.logout = this.logout.bind(this);
+        this.loadItems = this.loadItems.bind(this);
     }
 
     logout(){
         this.props.auth.logout();
         this.props.url.replace('/admin-login')
+    }
+
+    loadItems(){
+        this.props.auth.fetch(`${this.props.auth.domain}/shop`, {method: 'GET'})
+            .then(res => {
+                this.setState({
+                    items: res
+                })
+            })
     }
 
     componentDidMount(){
@@ -45,7 +55,7 @@ class Dashboard extends Component {
                 <p>Current user: {user}</p>
                 <p>Authenticated message: {message}</p>
                 {this.state.items.map(item => (
-                <EditModal buttonLabel={item.title} link={item.imagePath}>
+                <EditModal loadItems={this.loadItems} {...this.props} buttonLabel={item.title} itemId={item._id} link={item.imagePath}>
                     <CrudComponent item={item}/> 
                 </EditModal>
                 ))} 

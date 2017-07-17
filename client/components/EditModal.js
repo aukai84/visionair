@@ -21,10 +21,16 @@ class EditModal extends Component {
     }
 
     deleteItem(){
+        console.log(this.props)
+        this.props.auth.fetch(`http://localhost:8080/admin/edit-shop/delete/${this.props.itemId}`, {method: 'DELETE'})
+            .then(res => {
+                console.log(res)
+            })
         this.setState({
             modal: !this.state.modal
         })
         console.log('deleting item....')
+        this.props.loadItems();
     }
 
     changeBackdrop(e){
