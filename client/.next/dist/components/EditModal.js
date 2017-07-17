@@ -88,7 +88,7 @@ var EditModal = function (_Component) {
                     fileName: _jsxFileName,
                     lineNumber: 34
                 }
-            }, 'Modal title'), _react2.default.createElement(_reactstrap.ModalBody, {
+            }, this.props.buttonLabel), _react2.default.createElement(_reactstrap.ModalBody, {
                 __source: {
                     fileName: _jsxFileName,
                     lineNumber: 35
@@ -102,7 +102,7 @@ var EditModal = function (_Component) {
                     fileName: _jsxFileName,
                     lineNumber: 39
                 }
-            }, 'Do Something'), ' ', _react2.default.createElement(_reactstrap.Button, { color: 'secondary', onClick: this.toggle, __source: {
+            }, 'Submit'), ' ', _react2.default.createElement(_reactstrap.Button, { color: 'secondary', onClick: this.toggle, __source: {
                     fileName: _jsxFileName,
                     lineNumber: 40
                 }
