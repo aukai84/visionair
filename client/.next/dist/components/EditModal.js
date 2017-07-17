@@ -76,11 +76,11 @@ var EditModal = function (_Component) {
                     fileName: _jsxFileName,
                     lineNumber: 31
                 }
-            }, _react2.default.createElement(_reactstrap.Button, { color: 'danger', onClick: this.toggle, __source: {
+            }, _react2.default.createElement('img', { src: this.props.link, color: 'danger', onClick: this.toggle, __source: {
                     fileName: _jsxFileName,
                     lineNumber: 32
                 }
-            }, this.props.buttonLabel), _react2.default.createElement(_reactstrap.Modal, { isOpen: this.state.modal, toggle: this.toggle, className: this.props.className, backdrop: this.state.backdrop, __source: {
+            }), _react2.default.createElement(_reactstrap.Modal, { isOpen: this.state.modal, toggle: this.toggle, className: this.props.className, backdrop: this.state.backdrop, __source: {
                     fileName: _jsxFileName,
                     lineNumber: 33
                 }

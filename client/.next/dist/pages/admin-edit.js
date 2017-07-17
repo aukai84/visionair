@@ -52,7 +52,8 @@ var Dashboard = function (_Component) {
         var _this = (0, _possibleConstructorReturn3.default)(this, (Dashboard.__proto__ || (0, _getPrototypeOf2.default)(Dashboard)).call(this, props));
 
         _this.state = {
-            response: ''
+            response: '',
+            items: []
         };
         _this.logout = _this.logout.bind(_this);
         return _this;
@@ -73,40 +74,48 @@ var Dashboard = function (_Component) {
                 console.log('api res', res);
                 _this2.setState({ response: res.message });
             });
+            this.props.auth.fetch(this.props.auth.domain + '/shop', { method: 'GET' }).then(function (res) {
+                console.log('db items', res);
+                _this2.setState({
+                    items: res
+                });
+            });
         }
     }, {
         key: 'render',
         value: function render() {
-            console.log('profile', this.props.auth.getProfile());
+            console.log('db items', this.state.items);
             var user = this.props.auth.getProfile();
             var message = this.state.response;
             return _react2.default.createElement('div', {
                 __source: {
                     fileName: _jsxFileName,
-                    lineNumber: 33
+                    lineNumber: 42
                 }
             }, _react2.default.createElement('h1', {
                 __source: {
                     fileName: _jsxFileName,
-                    lineNumber: 34
+                    lineNumber: 43
                 }
             }, 'This is the admin page'), _react2.default.createElement('p', {
                 __source: {
                     fileName: _jsxFileName,
-                    lineNumber: 35
+                    lineNumber: 44
                 }
             }, 'Current user: ', user), _react2.default.createElement('p', {
                 __source: {
                     fileName: _jsxFileName,
-                    lineNumber: 36
+                    lineNumber: 45
                 }
-            }, 'Authenticated message: ', message), _react2.default.createElement(_EditModal2.default, { buttonLabel: 'Item 1', __source: {
+            }, 'Authenticated message: ', message), this.state.items.map(function (item) {
+                return _react2.default.createElement(_EditModal2.default, { buttonLabel: item.title, link: item.imagePath, __source: {
+                        fileName: _jsxFileName,
+                        lineNumber: 47
+                    }
+                }, item.title);
+            }), _react2.default.createElement(_reactstrap.Button, { color: 'primary', onClick: this.logout, __source: {
                     fileName: _jsxFileName,
-                    lineNumber: 37
-                }
-            }, 'This will contain the CRUD'), _react2.default.createElement(_reactstrap.Button, { color: 'primary', onClick: this.logout, __source: {
-                    fileName: _jsxFileName,
-                    lineNumber: 38
+                    lineNumber: 49
                 }
             }, 'Logout'));
         }

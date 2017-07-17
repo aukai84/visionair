@@ -29,7 +29,7 @@ class EditModal extends Component {
     render(){
         return (
       <div>
-         <Button color="danger" onClick={this.toggle}>{this.props.buttonLabel}</Button>
+          <img src={this.props.link} color="danger" onClick={this.toggle}/>
         <Modal isOpen={this.state.modal} toggle={this.toggle} className={this.props.className} backdrop={this.state.backdrop}>
           <ModalHeader toggle={this.toggle}>Modal title</ModalHeader>
           <ModalBody>

@@ -7,7 +7,8 @@ class Dashboard extends Component {
     constructor(props){
         super(props)
         this.state = {
-            response: ''
+            response: '',
+            items: []
         }
         this.logout = this.logout.bind(this);
     }
@@ -23,10 +24,18 @@ class Dashboard extends Component {
                 console.log('api res', res)
                 this.setState({response: res.message})
             })
+        this.props.auth.fetch(`${this.props.auth.domain}/shop`, {method: 'GET'})
+            .then(res => {
+                console.log('db items', res)
+                this.setState({
+                    items: res
+                })
+            
+            })
     }
 
     render(){
-        console.log('profile', this.props.auth.getProfile())        
+        console.log('db items', this.state.items)
         const user = this.props.auth.getProfile()
         const message = this.state.response
         return (
@@ -34,7 +43,9 @@ class Dashboard extends Component {
                 <h1>This is the admin page</h1>
                 <p>Current user: {user}</p>
                 <p>Authenticated message: {message}</p>
-                <EditModal buttonLabel="Item 1">This will contain the CRUD</EditModal>
+                {this.state.items.map(item => (
+                    <EditModal buttonLabel={item.title} link={item.imagePath}>{item.title}</EditModal>
+                ))} 
                 <Button color="primary" onClick={this.logout}>Logout</Button>
            </div>
         )
