@@ -10,9 +10,16 @@ class EditModal extends Component {
         };
         this.toggle = this.toggle.bind(this);
         this.changeBackdrop = this.changeBackdrop.bind(this);
+        this.deleteItem = this.deleteItem.bind(this);
     }
 
     toggle(){
+        this.setState({
+            modal: !this.state.modal
+        })
+    }
+
+    deleteItem(){
         this.setState({
             modal: !this.state.modal
         })
@@ -36,7 +43,8 @@ class EditModal extends Component {
               {this.props.children}
           </ModalBody>
           <ModalFooter>
-            <Button color="primary" onClick={this.toggle}>Submit</Button>{' '}
+              <Button color="primary" onClick={this.toggle}>Submit</Button>{' '}
+              <Button color="primary" onClick={this.deleteItem}>Delete</Button>
             <Button color="secondary" onClick={this.toggle}>Cancel</Button>
           </ModalFooter>
         </Modal>
