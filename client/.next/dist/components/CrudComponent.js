@@ -51,61 +51,61 @@ var CrudComponent = function (_Component) {
             return _react2.default.createElement(_reactstrap.Form, {
                 __source: {
                     fileName: _jsxFileName,
-                    lineNumber: 12
+                    lineNumber: 13
                 }
             }, _react2.default.createElement('p', {
                 __source: {
                     fileName: _jsxFileName,
-                    lineNumber: 13
+                    lineNumber: 14
                 }
             }, 'Title', _react2.default.createElement(_reactstrap.Input, { placeholder: this.props.item.title, __source: {
                     fileName: _jsxFileName,
-                    lineNumber: 14
+                    lineNumber: 15
                 }
             })), _react2.default.createElement('p', {
                 __source: {
-                    fileName: _jsxFileName,
-                    lineNumber: 16
-                }
-            }, 'Location', _react2.default.createElement(_reactstrap.Input, { placeholder: this.props.item.location, __source: {
                     fileName: _jsxFileName,
                     lineNumber: 17
                 }
+            }, 'Location', _react2.default.createElement(_reactstrap.Input, { placeholder: this.props.item.location, __source: {
+                    fileName: _jsxFileName,
+                    lineNumber: 18
+                }
             })), _react2.default.createElement('p', {
                 __source: {
-                    fileName: _jsxFileName,
-                    lineNumber: 19
-                }
-            }, 'Inventory', _react2.default.createElement(_reactstrap.Input, { placeholder: this.props.item.inventory, __source: {
                     fileName: _jsxFileName,
                     lineNumber: 20
                 }
+            }, 'Inventory', _react2.default.createElement(_reactstrap.Input, { placeholder: this.props.item.inventory, __source: {
+                    fileName: _jsxFileName,
+                    lineNumber: 21
+                }
             })), _react2.default.createElement('p', {
                 __source: {
-                    fileName: _jsxFileName,
-                    lineNumber: 22
-                }
-            }, 'Location', _react2.default.createElement(_reactstrap.Input, { placeholder: this.props.item.location, __source: {
                     fileName: _jsxFileName,
                     lineNumber: 23
                 }
+            }, 'Location', _react2.default.createElement(_reactstrap.Input, { placeholder: this.props.item.location, __source: {
+                    fileName: _jsxFileName,
+                    lineNumber: 24
+                }
             })), _react2.default.createElement('p', {
                 __source: {
-                    fileName: _jsxFileName,
-                    lineNumber: 25
-                }
-            }, 'Price', _react2.default.createElement(_reactstrap.Input, { placeholder: this.props.item.price, __source: {
                     fileName: _jsxFileName,
                     lineNumber: 26
                 }
+            }, 'Price', _react2.default.createElement(_reactstrap.Input, { placeholder: this.props.item.price, __source: {
+                    fileName: _jsxFileName,
+                    lineNumber: 27
+                }
             })), _react2.default.createElement('p', {
                 __source: {
                     fileName: _jsxFileName,
-                    lineNumber: 28
+                    lineNumber: 29
                 }
             }, 'Image', _react2.default.createElement(_reactstrap.Input, { type: 'file', name: 'file', id: 'imageFile', __source: {
                     fileName: _jsxFileName,
-                    lineNumber: 29
+                    lineNumber: 30
                 }
             })));
         }

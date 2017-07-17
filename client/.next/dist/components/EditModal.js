@@ -59,6 +59,7 @@ var EditModal = function (_Component) {
             this.setState({
                 modal: !this.state.modal
             });
+            console.log('submititng.....');
         }
     }, {
         key: 'deleteItem',
@@ -66,6 +67,7 @@ var EditModal = function (_Component) {
             this.setState({
                 modal: !this.state.modal
             });
+            console.log('deleting item....');
         }
     }, {
         key: 'changeBackdrop',
@@ -82,41 +84,41 @@ var EditModal = function (_Component) {
             return _react2.default.createElement('div', {
                 __source: {
                     fileName: _jsxFileName,
-                    lineNumber: 38
+                    lineNumber: 40
                 }
             }, _react2.default.createElement('img', { src: this.props.link, color: 'danger', onClick: this.toggle, __source: {
                     fileName: _jsxFileName,
-                    lineNumber: 39
+                    lineNumber: 41
                 }
             }), _react2.default.createElement(_reactstrap.Modal, { isOpen: this.state.modal, toggle: this.toggle, className: this.props.className, backdrop: this.state.backdrop, __source: {
                     fileName: _jsxFileName,
-                    lineNumber: 40
+                    lineNumber: 42
                 }
             }, _react2.default.createElement(_reactstrap.ModalHeader, { toggle: this.toggle, __source: {
                     fileName: _jsxFileName,
-                    lineNumber: 41
+                    lineNumber: 43
                 }
             }, this.props.buttonLabel), _react2.default.createElement(_reactstrap.ModalBody, {
                 __source: {
                     fileName: _jsxFileName,
-                    lineNumber: 42
+                    lineNumber: 44
                 }
             }, this.props.children), _react2.default.createElement(_reactstrap.ModalFooter, {
                 __source: {
                     fileName: _jsxFileName,
-                    lineNumber: 45
+                    lineNumber: 47
                 }
             }, _react2.default.createElement(_reactstrap.Button, { color: 'primary', onClick: this.toggle, __source: {
                     fileName: _jsxFileName,
-                    lineNumber: 46
+                    lineNumber: 48
                 }
             }, 'Submit'), ' ', _react2.default.createElement(_reactstrap.Button, { color: 'primary', onClick: this.deleteItem, __source: {
                     fileName: _jsxFileName,
-                    lineNumber: 47
+                    lineNumber: 49
                 }
             }, 'Delete'), _react2.default.createElement(_reactstrap.Button, { color: 'secondary', onClick: this.toggle, __source: {
                     fileName: _jsxFileName,
-                    lineNumber: 48
+                    lineNumber: 50
                 }
             }, 'Cancel'))));
         }

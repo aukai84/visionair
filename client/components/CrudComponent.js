@@ -6,6 +6,7 @@ class CrudComponent extends Component {
         super(props);
     }
 
+
     render(){
         console.log('crud props', this.props)
         return (
@@ -26,7 +27,7 @@ class CrudComponent extends Component {
                     <Input placeholder={this.props.item.price}/>
                 </p>
                 <p>Image
-                    <Input type="file" name="file" id="imageFile" />
+                    <Input type="file" name="file" id="imageFile"/>
                 </p>
             </Form>
         )

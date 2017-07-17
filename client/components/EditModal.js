@@ -17,12 +17,14 @@ class EditModal extends Component {
         this.setState({
             modal: !this.state.modal
         })
+        console.log('submititng.....')
     }
 
     deleteItem(){
         this.setState({
             modal: !this.state.modal
         })
+        console.log('deleting item....')
     }
 
     changeBackdrop(e){
