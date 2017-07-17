@@ -10,11 +10,24 @@ class CrudComponent extends Component {
         console.log('crud props', this.props)
         return (
             <Form>
-                <Input placeholder={this.props.item.title}/>
-                <Input placeholder={this.props.item.location}/>
-                <Input placeholder={this.props.item.inventory}/>
-                <Input placeholder={this.props.item.location}/>
-                <Input placeholder={this.props.item.price}/>
+                <p>Title
+                    <Input placeholder={this.props.item.title}/>
+                </p>
+                <p>Location
+                    <Input placeholder={this.props.item.location}/>
+                </p>
+                <p>Inventory
+                    <Input placeholder={this.props.item.inventory}/>
+                </p>
+                <p>Location
+                    <Input placeholder={this.props.item.location}/>
+                </p>
+                <p>Price
+                    <Input placeholder={this.props.item.price}/>
+                </p>
+                <p>Image
+                    <Input type="file" name="file" id="imageFile" />
+                </p>
             </Form>
         )
     }
