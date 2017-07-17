@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import withAuth from '../utils/withAuth.js';
 import {Button} from 'reactstrap';
 import EditModal from '../components/EditModal.js';
+import CrudComponent from '../components/CrudComponent.js';
 
 class Dashboard extends Component {
     constructor(props){
@@ -44,7 +45,9 @@ class Dashboard extends Component {
                 <p>Current user: {user}</p>
                 <p>Authenticated message: {message}</p>
                 {this.state.items.map(item => (
-                    <EditModal buttonLabel={item.title} link={item.imagePath}>{item.title}</EditModal>
+                <EditModal buttonLabel={item.title} link={item.imagePath}>
+                    <CrudComponent item={item}/> 
+                </EditModal>
                 ))} 
                 <Button color="primary" onClick={this.logout}>Logout</Button>
            </div>

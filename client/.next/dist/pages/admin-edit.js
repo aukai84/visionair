@@ -38,6 +38,10 @@ var _EditModal = require('../components/EditModal.js');
 
 var _EditModal2 = _interopRequireDefault(_EditModal);
 
+var _CrudComponent = require('../components/CrudComponent.js');
+
+var _CrudComponent2 = _interopRequireDefault(_CrudComponent);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var _jsxFileName = '/Users/matthewtirrell/Projects/visionair/client/pages/admin-edit.js?entry';
@@ -90,32 +94,36 @@ var Dashboard = function (_Component) {
             return _react2.default.createElement('div', {
                 __source: {
                     fileName: _jsxFileName,
-                    lineNumber: 42
+                    lineNumber: 43
                 }
             }, _react2.default.createElement('h1', {
                 __source: {
                     fileName: _jsxFileName,
-                    lineNumber: 43
+                    lineNumber: 44
                 }
             }, 'This is the admin page'), _react2.default.createElement('p', {
                 __source: {
                     fileName: _jsxFileName,
-                    lineNumber: 44
+                    lineNumber: 45
                 }
             }, 'Current user: ', user), _react2.default.createElement('p', {
                 __source: {
                     fileName: _jsxFileName,
-                    lineNumber: 45
+                    lineNumber: 46
                 }
             }, 'Authenticated message: ', message), this.state.items.map(function (item) {
                 return _react2.default.createElement(_EditModal2.default, { buttonLabel: item.title, link: item.imagePath, __source: {
                         fileName: _jsxFileName,
-                        lineNumber: 47
+                        lineNumber: 48
                     }
-                }, item.title);
+                }, _react2.default.createElement(_CrudComponent2.default, { item: item, __source: {
+                        fileName: _jsxFileName,
+                        lineNumber: 49
+                    }
+                }));
             }), _react2.default.createElement(_reactstrap.Button, { color: 'primary', onClick: this.logout, __source: {
                     fileName: _jsxFileName,
-                    lineNumber: 49
+                    lineNumber: 52
                 }
             }, 'Logout'));
         }
