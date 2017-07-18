@@ -38,7 +38,7 @@ app.use('/', require('./routes'));
 
 const port = process.env.PORT || 8080;
 
-let ascii = "VisionAir is up in the clouds            (  )\n" + "          _ .                         ( `  ) . )\n" + "        (  _ )_                      (_, _(  ,_)_)\n" + "      (_  _(_ ,)";
+let ascii = port + " VisionAir is up in the clouds       (  )\n" + "          _ .                         ( `  ) . )\n" + "        (  _ )_                      (_, _(  ,_)_)\n" + "      (_  _(_ ,)";
 
 
 const server = app.listen(port, function() {
