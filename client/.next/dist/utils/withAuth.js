@@ -37,10 +37,6 @@ var _AuthService = require('./AuthService.js');
 
 var _AuthService2 = _interopRequireDefault(_AuthService);
 
-var _head = require('next/dist/lib/head.js');
-
-var _head2 = _interopRequireDefault(_head);
-
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var _jsxFileName = '/Users/matthewtirrell/Projects/visionair/client/utils/withAuth.js';
@@ -77,34 +73,16 @@ function withAuth(AuthComponent) {
                 return _react2.default.createElement('div', {
                     __source: {
                         fileName: _jsxFileName,
+                        lineNumber: 26
+                    }
+                }, this.state.isLoading ? _react2.default.createElement('div', {
+                    __source: {
+                        fileName: _jsxFileName,
                         lineNumber: 27
-                    }
-                }, _react2.default.createElement(_head2.default, {
-                    __source: {
-                        fileName: _jsxFileName,
-                        lineNumber: 28
-                    }
-                }, _react2.default.createElement('title', {
-                    __source: {
-                        fileName: _jsxFileName,
-                        lineNumber: 29
-                    }
-                }, 'PairHub'), _react2.default.createElement('meta', { name: 'viewport', content: 'initial-scale=1.0, width=device-width', __source: {
-                        fileName: _jsxFileName,
-                        lineNumber: 30
-                    }
-                }), _react2.default.createElement('link', { rel: 'stylesheet', href: 'https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css', __source: {
-                        fileName: _jsxFileName,
-                        lineNumber: 31
-                    }
-                })), this.state.isLoading ? _react2.default.createElement('div', {
-                    __source: {
-                        fileName: _jsxFileName,
-                        lineNumber: 33
                     }
                 }, 'LOADING...') : _react2.default.createElement(AuthComponent, (0, _extends3.default)({}, this.props, { auth: Auth, __source: {
                         fileName: _jsxFileName,
-                        lineNumber: 34
+                        lineNumber: 28
                     }
                 })));
             }
