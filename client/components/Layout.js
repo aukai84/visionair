@@ -2,17 +2,19 @@ import React, {Component} from 'react';
 import Head from 'next/head'
 import { Container } from 'reactstrap'
 import { Collapse, Navbar, NavbarToggler, NavbarBrand, Nav, NavItem, NavLink } from 'reactstrap';
-import {Dropdown, DropdownMenu} from 'reactstrap';
+import LinkDropDown from '../components/LinkDropDown.js';
 import Link from 'next/link';
 
 export default class Layout extends Component {
   constructor(props) {
     super(props);
     this.toggleNav = this.toggleNav.bind(this);
-    this.toggleLink = this.toggleLink.bind(this);
     this.state = {
         isOpen: false,
-        dropdownOpen: false
+        dropdownItems: [
+            {title: "Link 1", itemPath: "/link-1"},
+            {title: "Link 2", itemPath: "/link-2"}
+        ]
     };
   }
 
@@ -22,13 +24,6 @@ export default class Layout extends Component {
     });
   }
     
-    toggleLink(){
-        console.log('toggle link...')
-        this.setState({
-            dropdownOpen: !this.state.dropdownOpen
-        })
-    }
-
   render() {
     return (
         <div>
@@ -49,18 +44,14 @@ export default class Layout extends Component {
                           <Link href="/shop-all">Shop All</Link>
                       </NavItem>
                       <NavItem>
-                          <Dropdown isOpen={this.state.dropdownOpen} toggle={this.toggleLink}>
-                              <span onMouseEnter={this.toggleLink} onMouseLeave={this.toggleLink} data-toggle="dropdown" aria-haspopup="true" aria-expanded={this.state.dropdownOpen}>
-                                  <Link href="/info">Info</Link>
-                              </span>
-                              <DropdownMenu>
-                                  <div>link 1</div>
-                                  <div>link 2</div>
-                                </DropdownMenu>
-                            </Dropdown>
+                          <LinkDropDown dropdownItems={this.state.dropdownItems}>
+                              <Link href="/info">Info</Link>
+                          </LinkDropDown>
                       </NavItem>
                       <NavItem>
-                          <Link href="/locations">Locations</Link>
+                          <LinkDropDown dropdownItems={this.state.dropdownItems}>
+                              <Link href="/locations">Locations</Link>
+                          </LinkDropDown>
                       </NavItem>
                       <NavItem>
                           <Link href="/cart">Cart</Link>
