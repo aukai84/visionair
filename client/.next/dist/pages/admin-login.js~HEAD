@@ -32,11 +32,9 @@ var _react = require('react');
 
 var _react2 = _interopRequireDefault(_react);
 
-var _withAuth = require('../utils/withAuth.js');
+var _AuthService = require('../utils/AuthService.js');
 
-var _withAuth2 = _interopRequireDefault(_withAuth);
-
-var _reactstrap = require('reactstrap');
+var _AuthService2 = _interopRequireDefault(_AuthService);
 
 var _EditModal = require('../components/EditModal.js');
 
@@ -52,17 +50,18 @@ var _Layout2 = _interopRequireDefault(_Layout);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var _jsxFileName = '/Users/matthewtirrell/Projects/visionair/client/pages/admin-edit.js?entry';
+var _jsxFileName = '/Users/matthewtirrell/Projects/visionair/client/pages/admin-login.js?entry';
 
 
-var Dashboard = function (_Component) {
-    (0, _inherits3.default)(Dashboard, _Component);
+var auth = new _AuthService2.default('http://localhost:8080');
 
-    function Dashboard(props) {
-        (0, _classCallCheck3.default)(this, Dashboard);
+var Login = function (_Component) {
+    (0, _inherits3.default)(Login, _Component);
 
-        var _this = (0, _possibleConstructorReturn3.default)(this, (Dashboard.__proto__ || (0, _getPrototypeOf2.default)(Dashboard)).call(this, props));
+    function Login(props) {
+        (0, _classCallCheck3.default)(this, Login);
 
+<<<<<<< HEAD:client/.next/dist/pages/admin-edit.js
         _this.state = {
             response: '',
             items: []
@@ -103,21 +102,53 @@ var Dashboard = function (_Component) {
                 _this3.setState({
                     items: res
                 });
+=======
+        var _this = (0, _possibleConstructorReturn3.default)(this, (Login.__proto__ || (0, _getPrototypeOf2.default)(Login)).call(this, props));
+
+        _this.handleSubmit = _this.handleSubmit.bind(_this);
+        return _this;
+    }
+
+    (0, _createClass3.default)(Login, [{
+        key: 'componentDidMount',
+        value: function componentDidMount() {
+            if (auth.loggedIn()) {
+                this.props.url.replace('/admin-edit'); //redirect if you are logged in
+            }
+        }
+    }, {
+        key: 'handleSubmit',
+        value: function handleSubmit(e) {
+            var _this2 = this;
+
+            e.preventDefault();
+            console.log(auth, "auth sevice");
+            auth.login(this.refs.username.value, this.refs.password.value).then(function (res) {
+                console.log("response from fetch", res);
+                _this2.props.url.replace('/admin-edit');
+            }).catch(function (e) {
+                return console.log(e);
+>>>>>>> develop:client/.next/dist/pages/admin-login.js~HEAD
             });
         }
     }, {
         key: 'render',
         value: function render() {
+<<<<<<< HEAD:client/.next/dist/pages/admin-edit.js
             var _this4 = this;
 
             console.log('db items', this.state.items);
             var user = this.props.auth.getProfile();
             var message = this.state.response;
             return _react2.default.createElement(_Layout2.default, {
+=======
+            return _react2.default.createElement('div', {
+>>>>>>> develop:client/.next/dist/pages/admin-login.js~HEAD
                 __source: {
                     fileName: _jsxFileName,
                     lineNumber: 54
                 }
+<<<<<<< HEAD:client/.next/dist/pages/admin-edit.js
             }, _react2.default.createElement('h1', {
                 __source: {
                     fileName: _jsxFileName,
@@ -125,14 +156,17 @@ var Dashboard = function (_Component) {
                 }
             }, 'This is the admin page'), _react2.default.createElement('p', {
                 __source: {
+=======
+            }, 'Login', _react2.default.createElement('form', { onSubmit: this.handleSubmit, __source: {
+>>>>>>> develop:client/.next/dist/pages/admin-login.js~HEAD
                     fileName: _jsxFileName,
                     lineNumber: 56
                 }
-            }, 'Current user: ', user), _react2.default.createElement('p', {
-                __source: {
+            }, _react2.default.createElement('input', { type: 'text', ref: 'username', __source: {
                     fileName: _jsxFileName,
                     lineNumber: 57
                 }
+<<<<<<< HEAD:client/.next/dist/pages/admin-edit.js
             }, 'Authenticated message: ', message), this.state.items.map(function (item) {
                 return _react2.default.createElement(_EditModal2.default, (0, _extends3.default)({ loadItems: _this4.loadItems }, _this4.props, { buttonLabel: item.title, itemId: item._id, link: item.imagePath, __source: {
                         fileName: _jsxFileName,
@@ -144,14 +178,21 @@ var Dashboard = function (_Component) {
                     }
                 }));
             }), _react2.default.createElement(_reactstrap.Button, { color: 'primary', onClick: this.logout, __source: {
+=======
+            }), _react2.default.createElement('input', { type: 'password', ref: 'password', __source: {
+>>>>>>> develop:client/.next/dist/pages/admin-login.js~HEAD
                     fileName: _jsxFileName,
                     lineNumber: 63
                 }
-            }, 'Logout'));
+            }), _react2.default.createElement('input', { type: 'submit', value: 'Login', __source: {
+                    fileName: _jsxFileName,
+                    lineNumber: 36
+                }
+            })));
         }
     }]);
 
-    return Dashboard;
+    return Login;
 }(_react.Component);
 
-exports.default = (0, _withAuth2.default)(Dashboard);
+exports.default = Login;
