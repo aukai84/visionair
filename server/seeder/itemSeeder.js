@@ -13,56 +13,55 @@ mongoose.connect('localhost:27017/visionair');
 
 const items = [
     new Item({
-        imagePath:'http://source.unsplash.com/i7hULbsIiQo.com',
-        title:'Beachy stuff',
-        location:'Oahu, Hawaii',
-        inventory:10,
-        price:250,
+        imagePath: 'http://source.unsplash.com/i7hULbsIiQo',
+        title: 'Keegan\'s stuff',
+        location: 'Oahu, Hawaii',
+        inventory: 100,
+        price: 2500
     }),
     new Item({
-        imagePath:'http://source.unsplash.com/JSv9uK-9ZUg.com',
-        title:'Beachy stuff',
-        location:'Oahu, Hawaii',
-        inventory:8,
-        price:100,
+        imagePath: 'http://source.unsplash.com/JSv9uK-9ZUg',
+        title: 'Beachy stuff',
+        location: 'Oahu, Hawaii',
+        inventory: 8,
+        price: 100
     }),
     new Item({
-        imagePath:'http://source.unsplash.com/D_yGyGmk60w.com',
-        title:'Beachy stuff',
-        location:'Oahu, Hawaii',
-        inventory:20,
-        price:300,
+        imagePath: 'http://source.unsplash.com/D_yGyGmk60w',
+        title: 'Beachy stuff',
+        location: 'Oahu, Hawaii',
+        inventory: 20,
+        price: 300
     }),
     new Item({
-        imagePath:'http://source.unsplash.com/j5QK3ZDRa-s.com',
-        title:'Beachy stuff',
-        location:'Oahu, Hawaii',
-        inventory:3,
-        price:140,
+        imagePath: 'http://source.unsplash.com/j5QK3ZDRa-s',
+        title: 'Beachy stuff',
+        location: 'Oahu, Hawaii',
+        inventory: 3,
+        price: 140
     }),
     new Item({
-        imagePath:'http://source.unsplash.com/PLxJw-Z817I.com',
-        title:'Beachy stuff',
-        location:'Oahu, Hawaii',
-        inventory:23,
-        price:70,
+        imagePath: 'http://source.unsplash.com/PLxJw-Z817I',
+        title: 'Beachy stuff',
+        location: 'Oahu, Hawaii',
+        inventory: 23,
+        price: 70
     }),
     new Item({
-        imagePath:'http://source.unsplash.com/t24k04BJAWg.com',
-        title:'Beachy stuff',
-        location:'Oahu, Hawaii',
-        inventory:10,
-        price:500,
-    })];
+        imagePath: 'http://source.unsplash.com/t24k04BJAWg',
+        title: 'Beachy stuff',
+        location: 'Oahu, Hawaii',
+        inventory: 10,
+        price: 500
+    })
+];
 
-    for (var i = 0; i < items.length; i++){
-        items[i].save(function(err, result){
-            if(err) {console.log(err);}
-        });
+for (var i = 0; i < items.length; i++) {
+    items[i].save(function(err, result) {
+        if (err) { console.log(err); }
+    });
 
-        if(i == items.length-1) {
-            mongoose.disconnect();
-        }
+    if (i == items.length - 1) {
+        mongoose.disconnect();
     }
-
-    
+}
