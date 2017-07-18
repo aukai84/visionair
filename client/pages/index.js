@@ -5,7 +5,9 @@ const Index = (props) => {
     console.log(props);
     return (
         <Layout>
-            <h1>This is the Home Page</h1>
+            <div width="100%">
+                <img width="100%" src="http://source.unsplash.com/t24k04BJAWg.com"/>
+            </div>
             <ul>
                 {props.items.map(item => (
                 <li>

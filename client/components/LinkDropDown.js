@@ -19,8 +19,8 @@ export default class LinkDropDown extends Component {
 
     render(){
         return(
-            <Dropdown isOpen={this.state.dropdownOpen} toggle={this.toggle}>
-                <span onMouseEnter={this.toggle} onMouseLeave={this.toggle} data-toggle="dropdown" aria-haspopup="true" aria-expanded={this.state.dropdownOpen}>
+            <Dropdown isOpen={this.state.dropdownOpen} onMouseLeave={this.toggle} toggle={this.toggle}>
+                <span onMouseOver={this.toggle} data-toggle="dropdown" aria-haspopup="true" aria-expanded={this.state.dropdownOpen}>
                     {this.props.children}
                 </span>
                 <DropdownMenu>

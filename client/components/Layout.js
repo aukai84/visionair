@@ -32,7 +32,7 @@ export default class Layout extends Component {
                 <meta name="viewport" content="initial-scale=1.0, width=device-width" />
                 <link rel="stylesheet" href="/static/css/bootstrap.min.css" />
             </Head>
-                <Navbar color="black" height="15%" light toggleable>
+                <Navbar color="black" height="20%" light toggleable>
                   <NavbarToggler right onClick={this.toggleNav} />
                   <NavbarBrand href="/">Visionair</NavbarBrand>
                   <Collapse isOpen={this.state.isOpen} navbar>
@@ -59,7 +59,12 @@ export default class Layout extends Component {
                     </Nav>
                   </Collapse>
                 </Navbar>
-                <Container>
+                <Container style={{
+                    margin: 0,
+                    padding: 0,
+                    width: "100%",
+                    height: "15%"
+                }}>
                     {this.props.children}
                 </Container> 
           </div>
