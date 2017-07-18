@@ -3,6 +3,7 @@ import withAuth from '../utils/withAuth.js';
 import {Button} from 'reactstrap';
 import EditModal from '../components/EditModal.js';
 import CrudComponent from '../components/CrudComponent.js';
+import Layout from '../components/Layout.js'
 
 class Dashboard extends Component {
     constructor(props){
@@ -50,7 +51,7 @@ class Dashboard extends Component {
         const user = this.props.auth.getProfile()
         const message = this.state.response
         return (
-            <div>
+            <Layout> 
                 <h1>This is the admin page</h1>
                 <p>Current user: {user}</p>
                 <p>Authenticated message: {message}</p>
@@ -60,7 +61,7 @@ class Dashboard extends Component {
                 </EditModal>
                 ))} 
                 <Button color="primary" onClick={this.logout}>Logout</Button>
-           </div>
+            </Layout>
         )
     }   
 }
