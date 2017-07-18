@@ -8,5 +8,3 @@ node_modules
 .env
 npm-debug.log*
 
-#next config
-.next
