@@ -1,5 +1,7 @@
 import React, {Component} from 'react';
 import AuthService from '../utils/AuthService.js';
+import { Button, Form, FormGroup, Label, Input, FormFeedback, FormText } from 'reactstrap';
+import Layout from '../components/Layout.js';
 
 const auth = new AuthService('http://localhost:8080');
 
@@ -17,8 +19,7 @@ class Login extends Component {
 
     handleSubmit(e){
         e.preventDefault()
-        console.log(auth, "auth sevice") 
-        auth.login(this.refs.username.value, this.refs.password.value)
+        auth.login(this.username.value, this.password.value)
             .then(res => {
                 console.log("response from fetch", res)
                 this.props.url.replace('/admin-edit')
@@ -28,14 +29,19 @@ class Login extends Component {
 
     render(){
         return (
-            <div>
-                Login
-                <form onSubmit={this.handleSubmit}>
-                    <input type="text" ref="username"/>
-                    <input type="password" ref="password"/>
-                    <input type="submit" value="Login"/>
-                </form>
-            </div>
+            <Layout>
+            <Form onSubmit={this.handleSubmit}>
+                <FormGroup>
+                    <Input type="text" getRef={(input) => (this.username = input)} placeholder="Username"/>
+                </FormGroup>
+                {' '}
+                <FormGroup>
+                    <Input type="password" getRef={(input) => (this.password = input)} placeholder="Password"/>
+                </FormGroup>
+                {' '}
+                <Input type="submit" value="Login"/>
+            </Form>
+        </Layout>
         )
     }
 }

@@ -32,9 +32,15 @@ var _AuthService = require('../utils/AuthService.js');
 
 var _AuthService2 = _interopRequireDefault(_AuthService);
 
+var _reactstrap = require('reactstrap');
+
+var _Layout = require('../components/Layout.js');
+
+var _Layout2 = _interopRequireDefault(_Layout);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var _jsxFileName = '/Users/keegangladstone/Desktop/visionair/client/pages/admin-login.js?entry';
+var _jsxFileName = '/Users/matthewtirrell/Projects/visionair/client/pages/admin-login.js?entry';
 
 
 var auth = new _AuthService2.default('http://localhost:8080');
@@ -64,8 +70,7 @@ var Login = function (_Component) {
             var _this2 = this;
 
             e.preventDefault();
-            console.log(auth, "auth sevice");
-            auth.login(this.refs.username.value, this.refs.password.value).then(function (res) {
+            auth.login(this.username.value, this.password.value).then(function (res) {
                 console.log("response from fetch", res);
                 _this2.props.url.replace('/admin-edit');
             }).catch(function (e) {
@@ -75,26 +80,42 @@ var Login = function (_Component) {
     }, {
         key: 'render',
         value: function render() {
-            return _react2.default.createElement('div', {
+            var _this3 = this;
+
+            return _react2.default.createElement(_Layout2.default, {
                 __source: {
                     fileName: _jsxFileName,
-                    lineNumber: 31
+                    lineNumber: 32
                 }
-            }, 'Login', _react2.default.createElement('form', { onSubmit: this.handleSubmit, __source: {
+            }, _react2.default.createElement(_reactstrap.Form, { onSubmit: this.handleSubmit, __source: {
                     fileName: _jsxFileName,
                     lineNumber: 33
                 }
-            }, _react2.default.createElement('input', { type: 'text', ref: 'username', __source: {
+            }, _react2.default.createElement(_reactstrap.FormGroup, {
+                __source: {
                     fileName: _jsxFileName,
                     lineNumber: 34
                 }
-            }), _react2.default.createElement('input', { type: 'password', ref: 'password', __source: {
+            }, _react2.default.createElement(_reactstrap.Input, { type: 'text', getRef: function getRef(input) {
+                    return _this3.username = input;
+                }, placeholder: 'Username', __source: {
                     fileName: _jsxFileName,
                     lineNumber: 35
                 }
-            }), _react2.default.createElement('input', { type: 'submit', value: 'Login', __source: {
+            })), ' ', _react2.default.createElement(_reactstrap.FormGroup, {
+                __source: {
                     fileName: _jsxFileName,
-                    lineNumber: 36
+                    lineNumber: 38
+                }
+            }, _react2.default.createElement(_reactstrap.Input, { type: 'password', getRef: function getRef(input) {
+                    return _this3.password = input;
+                }, placeholder: 'Password', __source: {
+                    fileName: _jsxFileName,
+                    lineNumber: 39
+                }
+            })), ' ', _react2.default.createElement(_reactstrap.Input, { type: 'submit', value: 'Login', __source: {
+                    fileName: _jsxFileName,
+                    lineNumber: 42
                 }
             })));
         }

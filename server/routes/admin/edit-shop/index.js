@@ -44,7 +44,11 @@ router.delete('/delete/:id', function(req, res, next) {
         } else {
             res.send({ message: "delete successful.", item: item });
         }
-    });
+        else {
+            console.log('deleted item...')
+            res.send({message:"delete successful."});
+        }
+    }); 
 });
 
 //update an item, place all fields on the request body.
