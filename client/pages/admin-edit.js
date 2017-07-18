@@ -55,12 +55,12 @@ class Dashboard extends Component {
                 <h1>This is the admin page</h1>
                 <p>Current user: {user}</p>
                 <p>Authenticated message: {message}</p>
+                <Button color="primary" onClick={this.logout}>Logout</Button>
                 {this.state.items.map(item => (
                 <EditModal loadItems={this.loadItems} {...this.props} buttonLabel={item.title} itemId={item._id} link={item.imagePath}>
                     <CrudComponent item={item}/> 
                 </EditModal>
                 ))} 
-                <Button color="primary" onClick={this.logout}>Logout</Button>
             </Layout>
         )
     }   
