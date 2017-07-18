@@ -19,8 +19,7 @@ class Login extends Component {
 
     handleSubmit(e){
         e.preventDefault()
-        console.log('refs', this) 
-        auth.login(this.refs.username.value, this.refs.password.value)
+        auth.login(this.username.value, this.password.value)
             .then(res => {
                 console.log("response from fetch", res)
                 this.props.url.replace('/admin-edit')
@@ -33,11 +32,11 @@ class Login extends Component {
             <Layout>
             <Form onSubmit={this.handleSubmit}>
                 <FormGroup>
-                    <Input type="text" ref="username" placeholder="Username"/>
+                    <Input type="text" getRef={(input) => (this.username = input)} placeholder="Username"/>
                 </FormGroup>
                 {' '}
                 <FormGroup>
-                    <Input type="password" ref="password" placeholder="Password"/>
+                    <Input type="password" getRef={(input) => (this.password = input)} placeholder="Password"/>
                 </FormGroup>
                 {' '}
                 <Input type="submit" value="Login"/>
