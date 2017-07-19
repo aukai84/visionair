@@ -32,16 +32,23 @@ export default class Layout extends Component {
                 <meta name="viewport" content="initial-scale=1.0, width=device-width" />
                 <link rel="stylesheet" href="/static/css/bootstrap.min.css" />
             </Head>
-                <Navbar color="black" height="20%" light toggleable>
+            <style jsx>{`
+                .nav-link {
+                    color: black;
+                    margin: 20px;
+                } 
+            `}
+            </style>
+                <Navbar className="navigation-bar" color="faded" full="true" height="300px" light toggleable>
                   <NavbarToggler right onClick={this.toggleNav} />
                   <NavbarBrand href="/">Visionair</NavbarBrand>
                   <Collapse isOpen={this.state.isOpen} navbar>
                     <Nav className="ml-auto" navbar>
                       <NavItem> 
-                          <Link margin="10px" href="/">Home</Link>
+                          <Link href="/">Home</Link>
                       </NavItem>
                       <NavItem>
-                          <Link href="/shop-all">Shop All</Link>
+                          <Link className="nav-link" href="/shop-all">Shop All</Link>
                       </NavItem>
                       <NavItem>
                           <LinkDropDown dropdownItems={this.state.dropdownItems}>
@@ -63,7 +70,6 @@ export default class Layout extends Component {
                     margin: 0,
                     padding: 0,
                     width: "100%",
-                    height: "15%"
                 }}>
                     {this.props.children}
                 </Container> 
