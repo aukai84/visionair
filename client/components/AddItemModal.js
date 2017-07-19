@@ -7,7 +7,8 @@ class AddItemModal extends Component {
         this.state = {
             modal: false,
             successModal: false,
-            successMessage: ''
+            successMessage: '',
+            newItem: {}
         }
         this.toggle = this.toggle.bind(this);
         this.toggleSuccess = this.toggleSuccess.bind(this);
@@ -41,10 +42,12 @@ class AddItemModal extends Component {
             .then(res => {
                 console.log('add item response', res)
                 this.setState({
-                    successMessage: res.message
+                    successMessage: res.message,
+                    newItem: res.createdItem
                 })
                 this.props.addItem(res.createdItem);
             })
+        this.toggleSuccess();
         this.toggle();
     }
 
@@ -81,6 +84,19 @@ class AddItemModal extends Component {
                     <ModalFooter>
                         <Button color="primary" onClick={this.addItem}>Add</Button>
                         <Button color="secondary" onClick={this.toggle}>Cancel</Button>
+                    </ModalFooter>
+                </Modal>
+                <Modal isOpen={this.state.successModal} toggle={this.toggleSuccess} className="add-item-success">
+                    <ModalHeader>New Item</ModalHeader>
+                    <ModalBody>
+                        <img src={this.state.newItem.imagePath} width="60%" height="60%"/>
+                        <p>{this.state.newItem.title}</p>
+                        <p>{this.state.newItem.location}</p>
+                        <p>${this.state.newItem.price}</p>
+                        <p>{this.state.newItem.inventory}</p>
+                    </ModalBody>
+                    <ModalFooter>
+                        <Button color="primary" onClick={this.toggleSuccess}>Close</Button>
                     </ModalFooter>
                 </Modal>
             </div>
