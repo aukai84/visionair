@@ -1,8 +1,7 @@
 import React, {Component} from 'react';
 import withAuth from '../utils/withAuth.js';
 import {Button} from 'reactstrap';
-import EditModal from '../components/EditModal.js';
-import CrudComponent from '../components/CrudComponent.js';
+import EditItemModal from '../components/EditItemModal.js';
 import Layout from '../components/Layout.js'
 
 class Dashboard extends Component {
@@ -13,7 +12,9 @@ class Dashboard extends Component {
             items: []
         }
         this.logout = this.logout.bind(this);
-        this.loadItems = this.loadItems.bind(this);
+        this.reloadItems = this.reloadItems.bind(this);
+        this.deleteItem = this.deleteItem.bind(this);
+        this.editItem = this.editItem.bind(this);
     }
 
     logout(){
@@ -21,7 +22,27 @@ class Dashboard extends Component {
         this.props.url.replace('/admin-login')
     }
 
-    loadItems(){
+    deleteItem(id){
+        this.setState({
+            items: this.state.items.filter(item => {
+                return item._id != id 
+            })
+        })
+    }
+
+    editItem(newItem){
+        this.setState({
+            items: this.state.items.map(item => {
+                if(item._id === newItem._id){
+                    item = newItem;
+                    return item;
+                }
+                return item;
+            })
+        })
+    }
+
+    reloadItems(){
         this.props.auth.fetch(`${this.props.auth.domain}/shop`, {method: 'GET'})
             .then(res => {
                 this.setState({
@@ -47,7 +68,6 @@ class Dashboard extends Component {
     }
 
     render(){
-        console.log('db items', this.state.items)
         const user = this.props.auth.getProfile()
         const message = this.state.response
         return (
@@ -57,7 +77,7 @@ class Dashboard extends Component {
                 <p>Authenticated message: {message}</p>
                 <Button color="primary" onClick={this.logout}>Logout</Button>
                 {this.state.items.map(item => (
-                <EditModal loadItems={this.loadItems} {...this.props} item={item}/>
+                <EditItemModal reloadItems={this.reloadItems} deleteItem={this.deleteItem} editItem={this.editItem} {...this.props} item={item}/>
                 ))} 
             </Layout>
         )

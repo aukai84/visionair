@@ -32,14 +32,7 @@ export default class Layout extends Component {
                 <meta name="viewport" content="initial-scale=1.0, width=device-width" />
                 <link rel="stylesheet" href="/static/css/bootstrap.min.css" />
             </Head>
-            <style jsx>{`
-                .nav-link {
-                    color: black;
-                    margin: 20px;
-                } 
-            `}
-            </style>
-                <Navbar className="navigation-bar" color="faded" full="true" height="300px" light toggleable>
+               <Navbar className="navigation-bar" color="faded" full="true" height="300px" light toggleable>
                   <NavbarToggler right onClick={this.toggleNav} />
                   <NavbarBrand href="/">Visionair</NavbarBrand>
                   <Collapse isOpen={this.state.isOpen} navbar>

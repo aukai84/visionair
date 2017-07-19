@@ -1,18 +1,18 @@
 import React, {Component} from 'react';
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter, Input, Label, Form, FormGroup } from 'reactstrap';
 
-class EditModal extends Component {
+class EditItemModal extends Component {
     constructor(props){
         super(props);
         this.state = {
             modal: false,
-            backdrop:true
+            successModal: false,
+            successMessage: ''
         };
         this.toggle = this.toggle.bind(this);
-        this.changeBackdrop = this.changeBackdrop.bind(this);
+        this.toggleSuccess = this.toggleSuccess.bind(this);
         this.deleteItem = this.deleteItem.bind(this);
         this.editItem = this.editItem.bind(this);
-        this.handleSubmit = this.handleSubmit.bind(this);
     }
 
     toggle(){
@@ -21,14 +21,23 @@ class EditModal extends Component {
         })
     }
 
+    toggleSuccess(){
+        this.setState({
+            successModal: !this.state.successModal
+        })
+    }
+
     deleteItem(){
-        this.props.auth.fetch(`${this.props.auth.domain}/admin/edit-shop/delete/${this.props.itemId}`, {method: 'DELETE'})
+        this.props.auth.fetch(`${this.props.auth.domain}/admin/edit-shop/delete/${this.props.item._id}`, {method: 'DELETE'})
             .then(res => {
-                console.log(res)
+                console.log('deleted item', res.item)
+                this.setState({
+                    successMessage: res.message
+                })
+                this.props.deleteItem(res.item._id);
+                this.toggleSuccess();
             })
         this.toggle();
-        console.log('deleting item....')
-        this.props.loadItems();
     }
 
     editItem(e){
@@ -45,30 +54,20 @@ class EditModal extends Component {
         })
             .then(res => {
                 console.log('put response', res)
+                this.setState({
+                    successMessage: res.message
+                })
+                this.props.editItem(res.item)
+                this.toggleSuccess();
             })
         this.toggle();
-        this.props.loadItems();
-    }
-
-    handleSubmit(e){
-        e.preventDefault();
-        console.log(this.location.value)
-        this.toggle();
-    }
-
-    changeBackdrop(e){
-        let value = e.target.value;
-        if(value !== 'static'){
-            value = JSON.parse(value);
-        }
-        this.setState({backdrop: value})
     }
 
     render(){
         return (
       <div>
           <img src={this.props.item.imagePath} onClick={this.toggle}/>
-        <Modal isOpen={this.state.modal} toggle={this.toggle} className={this.props.className} backdrop={this.state.backdrop}>
+        <Modal isOpen={this.state.modal} toggle={this.toggle} className={this.props.className}>
           <ModalHeader toggle={this.toggle}>Edit Item</ModalHeader>
           <ModalBody>
               <img src={this.props.item.imagePath} width="60%" height="60%"/>
@@ -96,14 +95,22 @@ class EditModal extends Component {
               </Form>
           </ModalBody>
           <ModalFooter>
-              <Button color="primary" onClick={this.editItem}>Submit</Button>{' '}
+              <Button color="primary" onClick={this.editItem}>Submit</Button>
               <Button color="primary" onClick={this.deleteItem}>Delete</Button>
             <Button color="secondary" onClick={this.toggle}>Cancel</Button>
           </ModalFooter>
-        </Modal>
+      </Modal>
+      <Modal isOpen={this.state.successModal} toggle={this.toggleSuccess} className={this.props.className}>
+          <ModalBody>
+              {this.state.successMessage}
+          </ModalBody>
+          <ModalFooter>
+              <Button color="primary" onClick={this.toggleSuccess}>Close</Button>
+          </ModalFooter>
+      </Modal>
       </div>
       );
     }
 }
 
-export default EditModal;
+export default EditItemModal;
