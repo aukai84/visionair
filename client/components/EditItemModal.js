@@ -32,7 +32,7 @@ class EditItemModal extends Component {
             .then(res => {
                 console.log('deleted item', res.item)
                 this.setState({
-                    successMessage: res.message
+                    successMessage: res.message 
                 })
                 this.props.deleteItem(res.item._id);
                 this.toggleSuccess();

@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import withAuth from '../utils/withAuth.js';
 import {Button} from 'reactstrap';
 import EditItemModal from '../components/EditItemModal.js';
+import AddItemModal from '../components/AddItemModal.js';
 import Layout from '../components/Layout.js'
 
 class Dashboard extends Component {
@@ -15,6 +16,7 @@ class Dashboard extends Component {
         this.reloadItems = this.reloadItems.bind(this);
         this.deleteItem = this.deleteItem.bind(this);
         this.editItem = this.editItem.bind(this);
+        this.addItem = this.addItem.bind(this);
     }
 
     logout(){
@@ -39,6 +41,12 @@ class Dashboard extends Component {
                 }
                 return item;
             })
+        })
+    }
+
+    addItem(newItem){
+        this.setState({
+            items: this.state.items.concat([newItem])
         })
     }
 
@@ -76,6 +84,7 @@ class Dashboard extends Component {
                 <p>Current user: {user}</p>
                 <p>Authenticated message: {message}</p>
                 <Button color="primary" onClick={this.logout}>Logout</Button>
+                <AddItemModal addItem={this.addItem} reloadItems={this.reloadItems} {...this.props}/>
                 {this.state.items.map(item => (
                 <EditItemModal reloadItems={this.reloadItems} deleteItem={this.deleteItem} editItem={this.editItem} {...this.props} item={item}/>
                 ))} 
