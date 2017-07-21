@@ -1,11 +1,8 @@
-.nav-item {
-    padding-left: 20px;
-    padding-right: 20px;
+.navbar-toggler {
+    border: none;
 }
 
-.navigation-bar {
-    padding-left: 30px;
-    padding-right: 60px;
-    height: 90px;
-    background-color: white;
+.navbar-toggler-icon {
+    width: 25px;
+    height: 25px;
 }

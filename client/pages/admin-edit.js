@@ -46,7 +46,7 @@ class Dashboard extends Component {
 
     addItem(newItem){
         this.setState({
-            items: this.state.items.concat([newItem])
+            items: this.state.items.concat(newItem)
         })
     }
 

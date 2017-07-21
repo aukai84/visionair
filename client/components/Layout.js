@@ -33,29 +33,29 @@ export default class Layout extends Component {
                 <link rel="stylesheet" href="/static/css/bootstrap.min.css" />
                 <link rel="stylesheet" href="/static/styles.css"/>
             </Head>
-               <Navbar className="navigation-bar" color="faded" full="true" height="300px" light toggleable>
+               <Navbar color="faded" full="true" light toggleable>
                   <NavbarToggler right onClick={this.toggleNav} />
                   <NavbarBrand href="/">Visionair</NavbarBrand>
-                  <Collapse isOpen={this.state.isOpen} navbar>
+                  <Collapse isOpen={this.state.isOpen} className="navbar-toggle" padding-right="1rem" navbar>
                     <Nav className="ml-auto" navbar>
                       <NavItem> 
-                          <Link href="/">Home</Link>
+                          <Link href="/"><a className="nav-link">Home</a></Link>
                       </NavItem>
                       <NavItem>
-                          <Link className="nav-link" href="/shop-all">Shop All</Link>
+                          <Link href="/shop-all"><a className="nav-link">Shop All</a></Link>
                       </NavItem>
                       <NavItem>
                           <LinkDropDown dropdownItems={this.state.dropdownItems}>
-                              <Link href="/info">Info</Link>
+                              <Link href="/info"><a className="nav-link">Info</a></Link>
                           </LinkDropDown>
                       </NavItem>
                       <NavItem>
                           <LinkDropDown dropdownItems={this.state.dropdownItems}>
-                              <Link href="/locations">Locations</Link>
+                              <Link href="/locations"><a className="nav-link">Locations</a></Link>
                           </LinkDropDown>
                       </NavItem>
                       <NavItem>
-                          <Link href="/cart">Cart</Link>
+                          <Link href="/cart"><a className="nav-link">Cart</a></Link>
                       </NavItem>
                     </Nav>
                   </Collapse>
