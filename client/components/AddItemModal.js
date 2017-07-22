@@ -13,8 +13,7 @@ class AddItemModal extends Component {
         this.toggle = this.toggle.bind(this);
         this.toggleSuccess = this.toggleSuccess.bind(this);
         this.addItem = this.addItem.bind(this);
-    }
-
+    } 
     toggle(){
         this.setState({
             modal: !this.state.modal 

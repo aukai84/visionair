@@ -3,15 +3,19 @@ import withAuth from '../utils/withAuth.js';
 import {Button} from 'reactstrap';
 import EditItemModal from '../components/EditItemModal.js';
 import AddItemModal from '../components/AddItemModal.js';
-import Layout from '../components/Layout.js'
+import Layout from '../components/Layout.js';
+import {Modal, ModalBody, ModalFooter} from 'reactstrap';
 
 class Dashboard extends Component {
     constructor(props){
         super(props)
         this.state = {
             response: '',
-            items: []
+            deletedItem: {},
+            items: [],
+            modal: false
         }
+        this.toggle = this.toggle.bind(this);
         this.logout = this.logout.bind(this);
         this.reloadItems = this.reloadItems.bind(this);
         this.deleteItem = this.deleteItem.bind(this);
@@ -19,17 +23,25 @@ class Dashboard extends Component {
         this.addItem = this.addItem.bind(this);
     }
 
+    toggle(){
+        this.setState({
+            modal: !this.state.modal
+        })
+    }
+
     logout(){
         this.props.auth.logout();
         this.props.url.replace('/admin-login')
     }
 
-    deleteItem(id){
+    deleteItem(deletedItem){
         this.setState({
+            deletedItem,
             items: this.state.items.filter(item => {
-                return item._id != id 
+                return item._id != deletedItem._id 
             })
         })
+        this.toggle();
     }
 
     editItem(newItem){
@@ -85,6 +97,14 @@ class Dashboard extends Component {
                 <p>Authenticated message: {message}</p>
                 <Button color="primary" onClick={this.logout}>Logout</Button>
                 <AddItemModal addItem={this.addItem} reloadItems={this.reloadItems} {...this.props}/>
+                <Modal isOpen={this.state.modal} toggle={this.toggle} className="delete-modal">
+                    <ModalBody>
+                        Successfully deleted item {this.state.deletedItem._id}
+                    </ModalBody>
+                    <ModalFooter>
+                        <Button color="primary" onClick={this.toggle}>Close</Button>
+                    </ModalFooter>
+                </Modal>
                 {this.state.items.map(item => (
                 <EditItemModal reloadItems={this.reloadItems} deleteItem={this.deleteItem} editItem={this.editItem} {...this.props} item={item}/>
                 ))} 

@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Dropdown, DropdownMenu} from 'reactstrap';
+import {Dropdown, DropdownMenu, DropdownItem} from 'reactstrap';
 import Link from 'next/link';
 
 export default class LinkDropDown extends Component {
@@ -25,9 +25,9 @@ export default class LinkDropDown extends Component {
                 </span>
                 <DropdownMenu>
                     {this.props.dropdownItems.map(item => (
-                    <div>
+                    <DropdownItem>
                         <Link href={item.path}>{item.title}</Link>
-                    </div>
+                    </DropdownItem>
                     ))}
                 </DropdownMenu>
             </Dropdown>

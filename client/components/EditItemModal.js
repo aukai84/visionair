@@ -9,38 +9,32 @@ class EditItemModal extends Component {
             successModal: false,
             successMessage: ''
         };
-        this.toggle = this.toggle.bind(this);
-        this.toggleSuccess = this.toggleSuccess.bind(this);
-        this.deleteItem = this.deleteItem.bind(this);
-        this.editItem = this.editItem.bind(this);
     }
 
-    toggle(){
+    toggle = () => {
         this.setState({
             modal: !this.state.modal
         })
     }
 
-    toggleSuccess(){
+    toggleSuccess = () => {
         this.setState({
             successModal: !this.state.successModal
         })
     }
 
-    deleteItem(){
+    deleteItem = () => {
         this.props.auth.fetch(`${this.props.auth.domain}/admin/edit-shop/delete/${this.props.item._id}`, {method: 'DELETE'})
             .then(res => {
-                console.log('deleted item', res.item)
                 this.setState({
-                    successMessage: res.message 
+                    successMessage: res.message
                 })
-                this.props.deleteItem(res.item._id);
-                this.toggleSuccess();
+                this.props.deleteItem(res.item)
             })
         this.toggle();
     }
 
-    editItem(e){
+    editItem = (e) => {
         e.preventDefault();
         this.props.auth.fetch(`${this.props.auth.domain}/admin/edit-shop/update/${this.props.item._id}`,{
             method: 'PUT',

@@ -33,7 +33,8 @@ export default class Layout extends Component {
                 <link rel="stylesheet" href="/static/css/bootstrap.min.css" />
                 <link rel="stylesheet" href="/static/styles.css"/>
             </Head>
-               <Navbar color="faded" full="true" light toggleable>
+              <div className="header">This is the Visionair header</div>
+              <Navbar color="faded" full="true" light toggleable>
                   <NavbarToggler right onClick={this.toggleNav} />
                   <NavbarBrand href="/">Visionair</NavbarBrand>
                   <Collapse isOpen={this.state.isOpen} className="navbar-toggle" padding-right="1rem" navbar>
