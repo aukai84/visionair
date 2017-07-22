@@ -1,7 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const Item = require('../../../models/item');
-
+const Item = require('../../../models/item'); 
 router.get('/', function(req, res, next) {
     res.send({ message: "congrats you are able to edit the shop" });
 });
@@ -44,7 +43,7 @@ router.delete('/delete/:id', function(req, res, next) {
         } else {
             res.send({ message: "delete successful.", item: item });
         }
-    });
+   }); 
 });
 
 //update an item, place all fields on the request body.

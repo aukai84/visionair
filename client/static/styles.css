@@ -1,0 +1,29 @@
+.navbar {
+    background-color: white;
+    color: black;
+}
+
+.navbar-toggler {
+    border: none;
+}
+
+.navbar-toggler-icon {
+    width: 25px;
+    height: 25px;
+}
+
+.nav-link {
+    padding-right: 1rem;
+    padding-left: 1rem;
+}
+
+.header {
+    height: 2rem;
+    text-align: center;
+}
+
+.dropdown-menu {
+    border: none;
+    font-family: sans-serif;
+    color: green;
+}
