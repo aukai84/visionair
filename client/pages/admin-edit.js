@@ -4,7 +4,7 @@ import {Button} from 'reactstrap';
 import EditItemModal from '../components/EditItemModal.js';
 import AddItemModal from '../components/AddItemModal.js';
 import Layout from '../components/Layout.js';
-import {Modal, ModalBody, ModalFooter} from 'reactstrap';
+import {Container, Row, Col, Modal, ModalBody, ModalFooter} from 'reactstrap';
 
 class Dashboard extends Component {
     constructor(props){
@@ -107,9 +107,15 @@ class Dashboard extends Component {
                         <Button color="primary" onClick={this.toggle}>Close</Button>
                     </ModalFooter>
                 </Modal>
-                {this.state.items.map(item => (
-                <EditItemModal reloadItems={this.reloadItems} deleteItem={this.deleteItem} editItem={this.editItem} {...this.props} item={item}/>
-                ))} 
+                <Container>
+                    <Row>
+                        {this.state.items.map(item => (
+                        <Col xs="12" sm="6" md="6" lg="4" xl="4">
+                            <EditItemModal reloadItems={this.reloadItems} deleteItem={this.deleteItem} editItem={this.editItem} {...this.props} item={item}/>
+                        </Col>
+                        ))}
+                    </Row>
+                </Container>
             </Layout>
         )
     }   
