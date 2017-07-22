@@ -1,19 +1,32 @@
 import React, {Component} from 'react';
 import withAuth from '../utils/withAuth.js';
 import {Button} from 'reactstrap';
-import EditModal from '../components/EditModal.js';
-import CrudComponent from '../components/CrudComponent.js';
-import Layout from '../components/Layout.js'
+import EditItemModal from '../components/EditItemModal.js';
+import AddItemModal from '../components/AddItemModal.js';
+import Layout from '../components/Layout.js';
+import {Container, Row, Col, Modal, ModalBody, ModalFooter} from 'reactstrap';
 
 class Dashboard extends Component {
     constructor(props){
         super(props)
         this.state = {
             response: '',
-            items: []
+            successMessage: '',
+            items: [],
+            modal: false
         }
+        this.toggle = this.toggle.bind(this);
         this.logout = this.logout.bind(this);
-        this.loadItems = this.loadItems.bind(this);
+        this.reloadItems = this.reloadItems.bind(this);
+        this.deleteItem = this.deleteItem.bind(this);
+        this.editItem = this.editItem.bind(this);
+        this.addItem = this.addItem.bind(this);
+    }
+
+    toggle(){
+        this.setState({
+            modal: !this.state.modal
+        })
     }
 
     logout(){
@@ -21,7 +34,37 @@ class Dashboard extends Component {
         this.props.url.replace('/admin-login')
     }
 
-    loadItems(){
+    deleteItem(deletedItem){
+        this.setState({
+            successMessage: `Successfully deleted item ${deletedItem._id}`,
+            items: this.state.items.filter(item => {
+                return item._id != deletedItem._id 
+            })
+        })
+        this.toggle();
+    }
+
+    editItem(editedItem){
+        this.setState({
+            successMessage: `Successfully edited item ${editedItem._id}`,
+            items: this.state.items.map(item => {
+                if(item._id === editedItem._id){
+                    item = editedItem;
+                    return item;
+                }
+                return item;
+            })
+        })
+        this.toggle();
+    }
+
+    addItem(newItem){
+        this.setState({
+            items: this.state.items.concat(newItem)
+        })
+    }
+
+    reloadItems(){
         this.props.auth.fetch(`${this.props.auth.domain}/shop`, {method: 'GET'})
             .then(res => {
                 this.setState({
@@ -47,7 +90,6 @@ class Dashboard extends Component {
     }
 
     render(){
-        console.log('db items', this.state.items)
         const user = this.props.auth.getProfile()
         const message = this.state.response
         return (
@@ -55,12 +97,25 @@ class Dashboard extends Component {
                 <h1>This is the admin page</h1>
                 <p>Current user: {user}</p>
                 <p>Authenticated message: {message}</p>
-                {this.state.items.map(item => (
-                <EditModal loadItems={this.loadItems} {...this.props} buttonLabel={item.title} itemId={item._id} link={item.imagePath}>
-                    <CrudComponent item={item}/> 
-                </EditModal>
-                ))} 
                 <Button color="primary" onClick={this.logout}>Logout</Button>
+                <AddItemModal addItem={this.addItem} reloadItems={this.reloadItems} {...this.props}/>
+                <Modal isOpen={this.state.modal} toggle={this.toggle} className="delete-modal">
+                    <ModalBody>
+                        {this.state.successMessage}
+                    </ModalBody>
+                    <ModalFooter>
+                        <Button color="primary" onClick={this.toggle}>Close</Button>
+                    </ModalFooter>
+                </Modal>
+                <Container>
+                    <Row>
+                        {this.state.items.map(item => (
+                        <Col xs="12" sm="6" md="6" lg="4" xl="4">
+                            <EditItemModal reloadItems={this.reloadItems} deleteItem={this.deleteItem} editItem={this.editItem} {...this.props} item={item}/>
+                        </Col>
+                        ))}
+                    </Row>
+                </Container>
             </Layout>
         )
     }   

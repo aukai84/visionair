@@ -1,7 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const Item = require('../../../models/item');
-
+const Item = require('../../../models/item'); 
 router.get('/', function(req, res, next) {
     res.send({ message: "congrats you are able to edit the shop" });
 });
