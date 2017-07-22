@@ -1,3 +1,7 @@
+p {
+    margin-bottom: .5rem;
+    font-size: .75rem;
+}
 .navbar {
     background-color: white;
     color: black;
@@ -26,4 +30,53 @@
     border: none;
     font-family: sans-serif;
     color: green;
+}
+
+.home-image-aspect {
+    padding-top: 56.25%;
+    position: relative;
+    overflow: hidden;
+}
+
+.home-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+}
+
+.thumbnail-container {
+    margin-bottom: 1rem;
+    padding: 0 2rem 0 2rem;
+}
+.thumbnail-aspect {
+    padding-top: 56.25%;
+    position: relative;
+    overflow: hidden;
+}
+
+.thumbnail-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+}
+
+.product-page-container {
+    padding-top: 10%;
+}
+
+.product-aspect {
+    padding-top: 56.25%;
+    position: relative;
+    overflow: hidden;
+}
+
+.product-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
 }

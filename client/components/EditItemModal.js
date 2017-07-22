@@ -46,8 +46,13 @@ class EditItemModal extends Component {
 
     render(){
         return (
-      <div>
-          <img width="100%" src={this.props.item.imagePath} onClick={this.toggle}/>
+        <div>
+          <div className="thumbnail-aspect">
+              <img className="thumbnail-image" src={this.props.item.imagePath} onClick={this.toggle}/>
+          </div>
+          <p>{this.props.item.title}</p>
+          <p>{this.props.item.price}</p>
+          <p>{this.props.item._id}</p>
         <Modal isOpen={this.state.modal} toggle={this.toggle} className={this.props.className}>
           <ModalHeader toggle={this.toggle}>Edit Item</ModalHeader>
           <ModalBody>

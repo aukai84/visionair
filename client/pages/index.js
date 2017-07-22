@@ -6,9 +6,9 @@ import { Container, Row, Col } from 'reactstrap';
 const Index = (props) => {
     console.log(props);
     return (
-        <Layout>
-            <div width="100%">
-                <img width="100%" src="/static/images/home.jpg"/>
+      <Layout>
+            <div className="home-image-aspect"> 
+                <img className="home-image" width="100%" src="/static/images/home.jpg"/>
             </div>
             <Container>
                 <Row>
@@ -28,9 +28,11 @@ const Index = (props) => {
                 </Row>
                 <Row>
                 {props.items.map(item => (
-                <Col xs="12" sm="6" md="6" lg="6">
+                <Col className="thumbnail-container" xs="12" sm="6" md="6" lg="6">
                     <Link href={`/product?id=${item._id}`}>
-                        <img width="100%" src={item.imagePath}/>
+                        <div className="thumbnail-aspect"> 
+                            <img className="thumbnail-image" width="100%" src={item.imagePath}/>
+                        </div>
                     </Link>
                         <p>{item.title}</p>
                         <p>{item.location}</p>
