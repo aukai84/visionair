@@ -86,7 +86,7 @@ class AddItemModal extends Component {
                     </ModalFooter>
                 </Modal>
                 <Modal isOpen={this.state.successModal} toggle={this.toggleSuccess} className="add-item-success">
-                    <ModalHeader>New Item</ModalHeader>
+                    <ModalHeader>New Item Added</ModalHeader>
                     <ModalBody>
                         <img src={this.state.newItem.imagePath} width="60%" height="60%"/>
                         <p>{this.state.newItem.title}</p>

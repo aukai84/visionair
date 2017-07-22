@@ -6,35 +6,27 @@ class EditItemModal extends Component {
         super(props);
         this.state = {
             modal: false,
-            successModal: false,
-            successMessage: ''
         };
+        this.toggle = this.toggle.bind(this);
+        this.deleteItem = this.deleteItem.bind(this);
+        this.editItem = this.editItem.bind(this);
     }
 
-    toggle = () => {
+    toggle(){
         this.setState({
             modal: !this.state.modal
         })
     }
 
-    toggleSuccess = () => {
-        this.setState({
-            successModal: !this.state.successModal
-        })
-    }
-
-    deleteItem = () => {
+    deleteItem(){
         this.props.auth.fetch(`${this.props.auth.domain}/admin/edit-shop/delete/${this.props.item._id}`, {method: 'DELETE'})
             .then(res => {
-                this.setState({
-                    successMessage: res.message
-                })
-                this.props.deleteItem(res.item)
+                this.props.deleteItem(res.item);
+                this.toggle();
             })
-        this.toggle();
     }
 
-    editItem = (e) => {
+    editItem(e){
         e.preventDefault();
         this.props.auth.fetch(`${this.props.auth.domain}/admin/edit-shop/update/${this.props.item._id}`,{
             method: 'PUT',
@@ -47,14 +39,9 @@ class EditItemModal extends Component {
             })
         })
             .then(res => {
-                console.log('put response', res)
-                this.setState({
-                    successMessage: res.message
-                })
-                this.props.editItem(res.item)
-                this.toggleSuccess();
+                this.props.editItem(res.item);
+                this.toggle();
             })
-        this.toggle();
     }
 
     render(){
@@ -94,15 +81,7 @@ class EditItemModal extends Component {
             <Button color="secondary" onClick={this.toggle}>Cancel</Button>
           </ModalFooter>
       </Modal>
-      <Modal isOpen={this.state.successModal} toggle={this.toggleSuccess} className={this.props.className}>
-          <ModalBody>
-              {this.state.successMessage}
-          </ModalBody>
-          <ModalFooter>
-              <Button color="primary" onClick={this.toggleSuccess}>Close</Button>
-          </ModalFooter>
-      </Modal>
-      </div>
+     </div>
       );
     }
 }

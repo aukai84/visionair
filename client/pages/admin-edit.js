@@ -11,7 +11,7 @@ class Dashboard extends Component {
         super(props)
         this.state = {
             response: '',
-            deletedItem: {},
+            successMessage: '',
             items: [],
             modal: false
         }
@@ -36,7 +36,7 @@ class Dashboard extends Component {
 
     deleteItem(deletedItem){
         this.setState({
-            deletedItem,
+            successMessage: `Successfully deleted item ${deletedItem._id}`,
             items: this.state.items.filter(item => {
                 return item._id != deletedItem._id 
             })
@@ -44,16 +44,18 @@ class Dashboard extends Component {
         this.toggle();
     }
 
-    editItem(newItem){
+    editItem(editedItem){
         this.setState({
+            successMessage: `Successfully edited item ${editedItem._id}`,
             items: this.state.items.map(item => {
-                if(item._id === newItem._id){
-                    item = newItem;
+                if(item._id === editedItem._id){
+                    item = editedItem;
                     return item;
                 }
                 return item;
             })
         })
+        this.toggle();
     }
 
     addItem(newItem){
@@ -99,7 +101,7 @@ class Dashboard extends Component {
                 <AddItemModal addItem={this.addItem} reloadItems={this.reloadItems} {...this.props}/>
                 <Modal isOpen={this.state.modal} toggle={this.toggle} className="delete-modal">
                     <ModalBody>
-                        Successfully deleted item {this.state.deletedItem._id}
+                        {this.state.successMessage}
                     </ModalBody>
                     <ModalFooter>
                         <Button color="primary" onClick={this.toggle}>Close</Button>
