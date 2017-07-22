@@ -46,6 +46,15 @@ p {
     width: 100%;
 }
 
+.home-page-wrapper{
+    padding: 4rem 0 4rem 0;
+}
+
+.home-page-info {
+    text-align: center;
+    padding: 1rem;
+}
+
 .thumbnail-container {
     margin-bottom: 1rem;
     padding: 0 2rem 0 2rem;
@@ -65,18 +74,28 @@ p {
 }
 
 .product-page-container {
-    padding-top: 10%;
+    padding: 1rem 0 0 0;
 }
 
 .product-aspect {
-    padding-top: 56.25%;
+    padding-bottom: 56.25%;
     position: relative;
     overflow: hidden;
 }
 
 .product-image {
-    position: absolute;
     top: 0;
     left: 0;
     width: 100%;
+    height: 100%;
+}
+
+.breadcrumb-container {
+    padding: 0;
+    width: 100%;
+    background-color: white;
+}
+
+.breadcrumb {
+    background-color: white;
 }

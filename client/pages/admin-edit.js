@@ -98,7 +98,7 @@ class Dashboard extends Component {
                     <h3>This is the admin page</h3>
                     <p>Current user: {user}</p>
                     <p>Authenticated message: {message}</p>
-                    <Button color="white" onClick={this.logout}>Logout</Button>
+                    <Button color="none" onClick={this.logout}>Logout</Button>
                     <AddItemModal addItem={this.addItem} reloadItems={this.reloadItems} {...this.props}/>
                     <Modal isOpen={this.state.modal} toggle={this.toggle} className="delete-modal">
                         <ModalBody>
