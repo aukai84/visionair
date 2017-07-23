@@ -8,11 +8,14 @@ class AddItemModal extends Component {
             modal: false,
             successModal: false,
             successMessage: '',
-            newItem: {}
+            newItem: {},
+            imageUrl: '',
+            file: {}
         }
         this.toggle = this.toggle.bind(this);
         this.toggleSuccess = this.toggleSuccess.bind(this);
         this.addItem = this.addItem.bind(this);
+        this.handleImageUpload = this.handleImageUpload.bind(this);
     } 
     toggle(){
         this.setState({
@@ -50,6 +53,19 @@ class AddItemModal extends Component {
         this.toggle();
     }
 
+    handleImageUpload(e){
+        const reader = new FileReader();
+        const file = e.target.files[0];
+        reader.onload = () => {
+            this.setState({
+                imageUrl: reader.result,
+                file
+            })
+            console.log('state after upload', this.state)
+        }
+        reader.readAsDataURL(file);
+    }
+
     render(){
         return(
             <div>
@@ -78,6 +94,15 @@ class AddItemModal extends Component {
                                 <Label for="add-modal">Image:</Label>
                                 <Input type="text" getRef={input=>this.imagePath=input}/>
                             </FormGroup>
+                            <FormGroup> 
+                                <Label for="add-modal">Upload Image</Label>
+                                <Input type="file" name="fullImage" onChange={this.handleImageUpload}/>
+                            </FormGroup>
+                            <FormGroup>
+                                <Label for="add-moadl">Upload Thumbnail</Label>
+                                <Input type="file" name="thumbnail" getRef={input=>this.thumbnail=input}/>
+                            </FormGroup>
+                            {this.state.imageUrl ? (<img width="60%" height="60%" src={this.state.imagePreviewUrl}/>) : (<p>Image Preview</p>)}
                         </Form>
                     </ModalBody>
                     <ModalFooter>

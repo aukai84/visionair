@@ -78,7 +78,7 @@ class EditItemModal extends Component {
                       <Label for="edit-moadl">Image</Label>
                       <Input type="link" defaultValue={this.props.item.imagePath} getRef={input=>this.imagePath=input}/>
                   </FormGroup>
-              </Form>
+            </Form>
           </ModalBody>
           <ModalFooter>
               <Button color="primary" onClick={this.editItem}>Submit</Button>

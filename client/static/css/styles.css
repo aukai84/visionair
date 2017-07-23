@@ -2,6 +2,7 @@ p {
     margin-bottom: .5rem;
     font-size: .75rem;
 }
+
 .navbar {
     background-color: white;
     color: black;
@@ -18,8 +19,7 @@ p {
 
 .nav-link {
     padding-right: 1rem;
-    padding-left: 1rem;
-}
+    padding-left: 1rem; }
 
 .header {
     height: 2rem;
@@ -56,8 +56,9 @@ p {
 }
 
 .thumbnail-container {
-    margin-bottom: 1rem;
-    padding: 0 2rem 0 2rem;
+    margin-bottom: 1.5rem;
+    padding: 0 1.5rem 0 1.5rem;
+    text-align: center;
 }
 .thumbnail-aspect {
     padding-top: 56.25%;
@@ -69,6 +70,7 @@ p {
     position: absolute;
     top: 0;
     left: 0;
+    padding-bottom: 1rem;
     height: 100%;
     width: 100%;
 }
@@ -90,6 +92,10 @@ p {
     height: 100%;
 }
 
+.product-info {
+    padding: 1rem;
+}
+
 .breadcrumb-container {
     padding: 0;
     width: 100%;
@@ -98,4 +104,17 @@ p {
 
 .breadcrumb {
     background-color: white;
+}
+
+.dropdown-toggle {
+    width: 100%;
+}
+
+.dropdown-menu {
+    align-items: center;
+    width: 100%;
+}
+
+.dropdown-item {
+    text-align: center;
 }

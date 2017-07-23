@@ -4,10 +4,29 @@ import Layout from '../components/Layout.js';
 import fetch from 'isomorphic-unfetch';
 import {Container, Collapse, Row, Col} from 'reactstrap';
 import { Breadcrumb, BreadcrumbItem } from 'reactstrap';
+import { Dropdown, DropdownToggle, DropdownMenu, DropdownItem } from 'reactstrap';
 
 class Product extends Component {
     constructor(props){
         super(props)
+        this.state = {
+            sizeDropDown: false,
+            materialDropDown: false
+        }
+        this.toggleSize = this.toggleSize.bind(this);
+        this.toggleMaterial = this.toggleMaterial.bind(this);
+    }
+
+    toggleSize(){
+        this.setState({
+            sizeDropDown: !this.state.sizeDropDown
+        })
+    }
+
+    toggleMaterial(){
+        this.setState({
+            materialDropDown: !this.state.materialDropDown
+        })
     }
 
     render(){
@@ -27,9 +46,29 @@ class Product extends Component {
                         </Col>
                         <Col xs="12" sm="12" md="4" lg="4">
                             <div className="product-info">
-                                <h5>$ {this.props.item.price}</h5> 
-                                <h1>{this.props.item.title}</h1>
+                                <h6>$ {this.props.item.price}</h6> 
+                                <h2>{this.props.item.title}</h2>
                                 <p>{this.props.item.location}</p>
+                                <Dropdown width="100%" isOpen={this.state.sizeDropDown} toggle={this.toggleSize}>
+                                    <DropdownToggle caret>
+                                      SIZE 
+                                    </DropdownToggle>
+                                    <DropdownMenu className="dropdown-menu">
+                                        <DropdownItem>Small</DropdownItem>
+                                        <DropdownItem>Medium</DropdownItem>
+                                        <DropdownItem>Large</DropdownItem>
+                                    </DropdownMenu>
+                                </Dropdown>
+                                <Dropdown width="100%" isOpen={this.state.materialDropDown} toggle={this.toggleMaterial}>
+                                    <DropdownToggle caret>
+                                        MATERIAL
+                                    </DropdownToggle>
+                                    <DropdownMenu className="dropdown-meny">
+                                        <DropdownItem>Canvas</DropdownItem>
+                                        <DropdownItem>Fine Art Paper</DropdownItem>
+                                        <DropdownItem>Metal</DropdownItem>
+                                    </DropdownMenu>
+                                </Dropdown>
                             </div>
                         </Col>
                     </Row>

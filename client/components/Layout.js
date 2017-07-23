@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import Head from 'next/head'
 import { Container } from 'reactstrap'
-import { Collapse, Navbar, NavbarToggler, NavbarBrand, Nav, NavItem, NavLink } from 'reactstrap';
+import {Collapse, Navbar, NavbarToggler, NavbarBrand, Nav, NavItem, NavLink } from 'reactstrap';
 import LinkDropDown from '../components/LinkDropDown.js';
 import Link from 'next/link';
 import AuthService from '../utils/AuthService.js';
@@ -34,7 +34,7 @@ export default class Layout extends Component {
                 <title>PairHub</title>
                 <meta name="viewport" content="initial-scale=1.0, width=device-width" />
                 <link rel="stylesheet" href="/static/css/bootstrap.min.css" />
-                <link rel="stylesheet" href="/static/styles.css"/>
+                <link rel="stylesheet" href="/static/css/styles.css"/>
             </Head>
               <Navbar color="faded" full="true" light toggleable>
                   <NavbarToggler right onClick={this.toggleNav} />

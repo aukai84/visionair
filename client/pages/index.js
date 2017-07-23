@@ -25,7 +25,7 @@ const Index = (props) => {
                         <Col className="home-page-info">Wedding videoss..videossoss</Col>
                     </Row>
                     <Row>
-                        <Col className="home-page-info">Beachy Stuff...Vision air</Col>
+                        <Col className="home-page-info">Beachy Stuff.....Visionair</Col>
                     </Row>
                 </div>
                 <Row>
@@ -38,7 +38,7 @@ const Index = (props) => {
                     </Link>
                         <p>{item.title}</p>
                         <p>{item.location}</p>
-                        <p>{item.inventory}</p>
+                        <p>${item.price}</p>
                     </Col>
                 ))}
                 </Row>
