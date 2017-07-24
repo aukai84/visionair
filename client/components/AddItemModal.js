@@ -9,13 +9,14 @@ class AddItemModal extends Component {
             successModal: false,
             successMessage: '',
             newItem: {},
-            imageUrl: '',
-            file: {}
+            fullImage: {},
+            thumbnail: {}
         }
         this.toggle = this.toggle.bind(this);
         this.toggleSuccess = this.toggleSuccess.bind(this);
         this.addItem = this.addItem.bind(this);
         this.handleImageUpload = this.handleImageUpload.bind(this);
+        this.handleThumbnailUpload = this.handleThumbnailUpload.bind(this);
     } 
     toggle(){
         this.setState({
@@ -31,16 +32,15 @@ class AddItemModal extends Component {
 
     addItem(e){
         e.preventDefault();
-        let data = new FormData();
-        data.append('file', this.state.file)
-        data.append('filename', 'destiny')
+        let images = new FormData();
+        images.append('fullImage', this.state.fullImage)
+        images.append('thumbnail', this.state.thumbnail)
         this.props.auth.fetch(`${this.props.auth.domain}/admin/edit-shop/upload-item`, {
             method: 'POST',
             enctype: 'multipart/form-data',
-            body: data 
+            body: images 
         })
             .then(res => {
-                console.log('uploaded item', res.file)
                 this.props.auth.fetch(`${this.props.auth.domain}/admin/edit-shop/new-item`, {
                     method: 'POST',
                     body: JSON.stringify({
@@ -48,7 +48,8 @@ class AddItemModal extends Component {
                     location: this.location.value,
                     price: this.price.value,
                     inventory: this.inventory.value,
-                    imagePath: `/static/images/${res.file.filename}`
+                    imagePath: `/static/images/${res.fullImageName}`,
+                    thumbnailPath: `static/images/${res.thumbnailName}`
             })
         })
             .then(res => {
@@ -67,18 +68,28 @@ class AddItemModal extends Component {
 
     handleImageUpload(e){
         const reader = new FileReader();
-        const file = e.target.files[0];
+        const fullImage = e.target.files[0];
         reader.onload = () => {
             this.setState({
-                imageUrl: reader.result,
-                file
+                fullImage 
             })
-            console.log('state after upload', this.state)
         }
-        reader.readAsDataURL(file);
+        reader.readAsDataURL(fullImage);
+    }
+
+    handleThumbnailUpload(e){
+        const reader = new FileReader();
+        const thumbnail = e.target.files[0];
+        reader.onload = () => {
+            this.setState({
+                thumbnail
+            })
+        }
+        reader.readAsDataURL(thumbnail);
     }
 
     render(){
+        console.log('upload items state...', this.state)
         return(
             <div>
                 <Button color="primary" onClick={this.toggle}>Add +</Button>
@@ -104,11 +115,11 @@ class AddItemModal extends Component {
                             </FormGroup>
                            <FormGroup> 
                                 <Label for="add-modal">Upload Image</Label>
-                                <Input type="file" name="file" id="file" onChange={this.handleImageUpload}/>
+                                <Input type="file" name="fullImage" id="file" onChange={this.handleImageUpload}/>
                             </FormGroup>
                             <FormGroup>
                                 <Label for="add-moadl">Upload Thumbnail</Label>
-                                <Input type="file" name="thumbnail" getRef={input=>this.thumbnail=input}/>
+                                <Input type="file" name="thumbnail" onChange={this.handleThumbnailUpload}/>
                             </FormGroup>
                             {this.state.imageUrl ? (<img width="60%" height="60%" src={this.state.imagePreviewUrl}/>) : (<p>Image Preview</p>)}
                         </Form>

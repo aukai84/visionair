@@ -37,9 +37,13 @@ router.post('/new-item', function(req, res, next) {
     });
 });
 
-router.post('/upload-item', upload.single('file'), function(req, res, next){
-    console.log(req.file)
-    res.send({file: req.file})
+let photosUpload = upload.fields([
+    {name: 'fullImage', maxCount: 1},
+    {name: 'thumbnail', maxCount: 1}
+])
+router.post('/upload-item', photosUpload, function(req, res, next){
+    console.log(req.files.fullImage)
+    res.send({fullImageName: req.files.fullImage[0].filename, thumbnailName: req.files.thumbnail[0].filename})
 })
 //use the response object to immediately remove the item from the store so the admin sees the update w/o refresh.
 router.delete('/delete/:id', function(req, res, next) {
