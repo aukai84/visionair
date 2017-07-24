@@ -2,6 +2,7 @@ const express = require('express');
 const path = require('path');
 const session = require('express-session');
 const bodyParser = require('body-parser');
+const multer = require('multer');
 const mongoose = require('mongoose');
 const compression = require('compression');
 const cors = require('cors');
@@ -23,17 +24,17 @@ mongoose.connect('localhost:27017/visionair');
 //Express setup~~~~~~~~~~~~~~~~~
 app.use(cors());
 app.use(morgan('dev'));
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json({limit: '50mb'}));
+app.use(bodyParser.urlencoded({ extended: true, limit: '50mb'}));
+app.use((err, req, res, next) => {
+    console.log(err);
+    next(err);
+})
 
 
 app.use(express.static(path.join(__dirname, 'public')));
 
-
-
 app.use(compression());
-app.use(cors());
-
 app.use('/', require('./routes'));
 
 const port = process.env.PORT || 8080;

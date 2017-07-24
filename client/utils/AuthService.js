@@ -76,19 +76,20 @@ export default class AuthService {
 
     fetch(url, options){
         //perform api call sending required auth headers
-        const headers = {
-            'Accept': 'application/json',
-            'Content-Type': 'application/json'
+        if(options.enctype){
+            options.headers = {'Accept': 'multipart/form-data'} 
+        } else {
+            options.headers = {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            } 
         }
-
+        
         if(this.loggedIn()){
-            headers.authorization = this.getToken()
+            options.headers.authorization = this.getToken()
         }
 
-        return fetch(url, {
-            headers,
-            ...options
-        })
+        return fetch(url, options)
             .then(this._checkStatus)
             .then(response => response.json())
     }

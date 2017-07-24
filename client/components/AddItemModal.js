@@ -31,24 +31,36 @@ class AddItemModal extends Component {
 
     addItem(e){
         e.preventDefault();
-        this.props.auth.fetch(`${this.props.auth.domain}/admin/edit-shop/new-item`, {
+        let data = new FormData();
+        data.append('file', this.state.file)
+        data.append('filename', 'destiny')
+        this.props.auth.fetch(`${this.props.auth.domain}/admin/edit-shop/upload-item`, {
             method: 'POST',
-            body: JSON.stringify({
-                title: this.title.value,
-                location: this.location.value,
-                price: this.price.value,
-                inventory: this.inventory.value,
-                imagePath: this.imagePath.value
+            enctype: 'multipart/form-data',
+            body: data 
+        })
+            .then(res => {
+                console.log('uploaded item', res.file)
+                this.props.auth.fetch(`${this.props.auth.domain}/admin/edit-shop/new-item`, {
+                    method: 'POST',
+                    body: JSON.stringify({
+                    title: this.title.value,
+                    location: this.location.value,
+                    price: this.price.value,
+                    inventory: this.inventory.value,
+                    imagePath: `/static/images/${res.file.filename}`
             })
         })
             .then(res => {
-                console.log('add item response', res)
                 this.setState({
                     successMessage: res.message,
                     newItem: res.createdItem
                 })
                 this.props.addItem(res.createdItem);
             })
+
+            })
+
         this.toggleSuccess();
         this.toggle();
     }
@@ -90,13 +102,9 @@ class AddItemModal extends Component {
                                 <Label for="add-modal">Inventory:</Label>
                                 <Input type="number" getRef={input=>this.inventory=input}/>
                             </FormGroup>
-                            <FormGroup>
-                                <Label for="add-modal">Image:</Label>
-                                <Input type="text" getRef={input=>this.imagePath=input}/>
-                            </FormGroup>
-                            <FormGroup> 
+                           <FormGroup> 
                                 <Label for="add-modal">Upload Image</Label>
-                                <Input type="file" name="fullImage" onChange={this.handleImageUpload}/>
+                                <Input type="file" name="file" id="file" onChange={this.handleImageUpload}/>
                             </FormGroup>
                             <FormGroup>
                                 <Label for="add-moadl">Upload Thumbnail</Label>
