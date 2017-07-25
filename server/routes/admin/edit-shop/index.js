@@ -29,20 +29,6 @@ router.get('/', function(req, res, next) {
     res.send({ message: "congrats you are able to edit the shop", directory: __dirname});
 });
 
-router.get('/test/:id', function(req, res, next) {
-    res.send(req.params.id);
-})
-
-//add a new item to the db, req.body should be of the form:
-/*{
-        "imagePath": "http://source.unsplash.com/i7hULbsIiQo",
-        "title": "Keegan's stuff",
-        "location": "Oahu, Hawaii",
-        "inventory": 100,
-        "price": 2500
-    }
-    */
-
 //use the response object to update the store on the front end so the admin can immediately see their new item in the store w/o refreshing the store.
 router.post('/new-item', function(req, res, next) {
     const newItem = new Item(req.body);
