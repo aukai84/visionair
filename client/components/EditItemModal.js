@@ -35,7 +35,7 @@ class EditItemModal extends Component {
                 location: this.location.value,
                 imagePath: this.imagePath.value,
                 inventory: this.inventory.value,
-                price: this.price.value,
+                price: this.price.value
             })
         })
             .then(res => {

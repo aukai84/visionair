@@ -3,14 +3,28 @@ const router = express.Router();
 const multer = require('multer');
 const Item = require('../../../models/item'); 
 
-const upload = multer({dest:'../client/static/images', limits: {
-    fieldSize: '50mb', fileSize: '50mb'
-}});
+const upload = multer({
+    dest:'../client/static/images',
+    limits: {
+        fieldSize: '20mb', 
+        fileSize: '20mb'
+    },
+    fileFilter
+});
 
 let photosUpload = upload.fields([
     {name: 'fullImage', maxCount: 1},
     {name: 'thumbnail', maxCount: 1}
 ])
+
+let fileFilter = function(req, file, cb) {
+    console.log('file filter', file.mimetype)
+    if(file.mimetype ==='image/*'){
+        cb(null, true)
+    } else {
+        cb(null, false)
+    }
+}
 
 router.get('/', function(req, res, next) {
     res.send({ message: "congrats you are able to edit the shop", directory: __dirname});
