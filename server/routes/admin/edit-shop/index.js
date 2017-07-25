@@ -2,9 +2,15 @@ const express = require('express');
 const router = express.Router();
 const multer = require('multer');
 const Item = require('../../../models/item'); 
+
 const upload = multer({dest:'../client/static/images', limits: {
     fieldSize: '50mb', fileSize: '50mb'
-}})
+}});
+
+let photosUpload = upload.fields([
+    {name: 'fullImage', maxCount: 1},
+    {name: 'thumbnail', maxCount: 1}
+])
 
 router.get('/', function(req, res, next) {
     res.send({ message: "congrats you are able to edit the shop", directory: __dirname});
@@ -37,14 +43,13 @@ router.post('/new-item', function(req, res, next) {
     });
 });
 
-let photosUpload = upload.fields([
-    {name: 'fullImage', maxCount: 1},
-    {name: 'thumbnail', maxCount: 1}
-])
+//upload both thumbnail and full image through multer middleware.  Send names back to client to store file path into db
 router.post('/upload-item', photosUpload, function(req, res, next){
-    console.log(req.files.fullImage)
+
     res.send({fullImageName: req.files.fullImage[0].filename, thumbnailName: req.files.thumbnail[0].filename})
+
 })
+
 //use the response object to immediately remove the item from the store so the admin sees the update w/o refresh.
 router.delete('/delete/:id', function(req, res, next) {
     let id = req.params.id;

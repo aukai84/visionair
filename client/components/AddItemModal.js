@@ -115,11 +115,11 @@ class AddItemModal extends Component {
                             </FormGroup>
                            <FormGroup> 
                                 <Label for="add-modal">Upload Image</Label>
-                                <Input type="file" name="fullImage" id="file" onChange={this.handleImageUpload}/>
+                                <Input type="file" name="fullImage" accept="image/*" onChange={this.handleImageUpload}/>
                             </FormGroup>
                             <FormGroup>
                                 <Label for="add-moadl">Upload Thumbnail</Label>
-                                <Input type="file" name="thumbnail" onChange={this.handleThumbnailUpload}/>
+                                <Input type="file" name="thumbnail" accept="image/*" onChange={this.handleThumbnailUpload}/>
                             </FormGroup>
                             {this.state.imageUrl ? (<img width="60%" height="60%" src={this.state.imagePreviewUrl}/>) : (<p>Image Preview</p>)}
                         </Form>

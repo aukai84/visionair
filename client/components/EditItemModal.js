@@ -56,7 +56,9 @@ class EditItemModal extends Component {
         <Modal isOpen={this.state.modal} toggle={this.toggle} className={this.props.className}>
           <ModalHeader toggle={this.toggle}>Edit Item</ModalHeader>
           <ModalBody>
-              <img src={this.props.item.imagePath} width="60%" height="60%"/>
+              <div className="thumbnail-aspect">
+                  <img className="thumbnail-image" src={this.props.item.imagePath}/>
+              </div> 
               <Form>
                   <FormGroup>
                       <Label for="edit-modal">Title</Label>
@@ -74,11 +76,7 @@ class EditItemModal extends Component {
                       <Label for="edit-modal">Inventory</Label>
                       <Input type="number" defaultValue={this.props.item.inventory} getRef={input=>this.inventory=input}/>
                   </FormGroup>
-                  <FormGroup>
-                      <Label for="edit-moadl">Image</Label>
-                      <Input type="link" defaultValue={this.props.item.imagePath} getRef={input=>this.imagePath=input}/>
-                  </FormGroup>
-            </Form>
+              </Form>
           </ModalBody>
           <ModalFooter>
               <Button color="primary" onClick={this.editItem}>Submit</Button>
