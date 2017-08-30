@@ -1,0 +1,17 @@
+
+http://production.shippingapis.com/ShippingApi.dll?API=RateV4&XML=<RateV4Request USERID="818TURNK0690">
+<Package ID="1ST"> 
+<Service>PRIORITY</Service> 
+<ZipOrigination>44106</ZipOrigination> 
+<ZipDestination>20770</ZipDestination> 
+<Pounds>1</Pounds> 
+<Ounces>8</Ounces> 
+<Container>NONRECTANGULAR</Container> 
+<Size>LARGE</Size> 
+<Width>15</Width> 
+<Length>30</Length> 
+<Height>15</Height> 
+<Girth>55</Girth> 
+</Package> 
+
+</RateV4Request> 

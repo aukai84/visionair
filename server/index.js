@@ -48,7 +48,12 @@ app.use(helmet());
 
 app.use(express.static(path.join(__dirname, 'public')));
 
-
+app.use(function(req, res, next) {
+    res.setHeader("Pragma", "no-cache");
+    res.setHeader("Expires", "0");
+    res.locals.session = req.session;
+    next();
+});
 
 app.use(compression());
 app.use(cors());
