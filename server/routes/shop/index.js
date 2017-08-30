@@ -26,8 +26,11 @@ router.get('/item/:id', function(req, res, next) {
 });
 
 router.get('/view-cart', function(req, res, next) {
-    let cart = new Cart(req.session.cart ? req.session.cart : {});
-    res.send(cart);
+    if (req.session.cart != undefined) {
+        res.send(req.session.cart);
+    } else {
+        res.send('Your cart is empty.');
+    }
 });
 
 //pass item id in route.
@@ -47,6 +50,7 @@ router.post('/addItem/:id', function(req, res, next) {
                 cart.addItem(item, selectedOptions);
                 req.session.cart = cart;
 
+                console.log(req.session.cart);
 
                 res.send(cart);
             }
@@ -84,9 +88,6 @@ router.post('/removeOptionFromItem/:id/:index', function(req, res, next) {
         res.send('Cart is empty at removeOptionFromItem route.');
     }
 });
-
-
-
 
 
 module.exports = router;
