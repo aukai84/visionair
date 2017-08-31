@@ -35,7 +35,7 @@ class EditItemModal extends Component {
                 location: this.location.value,
                 imagePath: this.imagePath.value,
                 inventory: this.inventory.value,
-                price: this.price.value,
+                price: this.price.value
             })
         })
             .then(res => {
@@ -46,12 +46,19 @@ class EditItemModal extends Component {
 
     render(){
         return (
-      <div>
-          <img width="100%" src={this.props.item.imagePath} onClick={this.toggle}/>
+        <div>
+          <div className="thumbnail-aspect">
+              <img className="thumbnail-image" src={this.props.item.imagePath} onClick={this.toggle}/>
+          </div>
+          <p>{this.props.item.title}</p>
+          <p>{this.props.item.price}</p>
+          <p>{this.props.item._id}</p>
         <Modal isOpen={this.state.modal} toggle={this.toggle} className={this.props.className}>
           <ModalHeader toggle={this.toggle}>Edit Item</ModalHeader>
           <ModalBody>
-              <img src={this.props.item.imagePath} width="60%" height="60%"/>
+              <div className="thumbnail-aspect">
+                  <img className="thumbnail-image" src={this.props.item.imagePath}/>
+              </div> 
               <Form>
                   <FormGroup>
                       <Label for="edit-modal">Title</Label>
@@ -68,10 +75,6 @@ class EditItemModal extends Component {
                   <FormGroup>
                       <Label for="edit-modal">Inventory</Label>
                       <Input type="number" defaultValue={this.props.item.inventory} getRef={input=>this.inventory=input}/>
-                  </FormGroup>
-                  <FormGroup>
-                      <Label for="edit-moadl">Image</Label>
-                      <Input type="link" defaultValue={this.props.item.imagePath} getRef={input=>this.imagePath=input}/>
                   </FormGroup>
               </Form>
           </ModalBody>

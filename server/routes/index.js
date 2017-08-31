@@ -12,7 +12,6 @@ router.get('/', function(req, res, next) {
  *unique links are stored in analytics to track which link users followed.
  */
 
-
 router.use('/shop', require('./shop'));
 router.use('/admin', require('./admin'));
 router.use('/mailer', require('./mailer'));

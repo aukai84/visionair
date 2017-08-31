@@ -2,6 +2,7 @@ const express = require('express');
 const path = require('path');
 const session = require('express-session');
 const bodyParser = require('body-parser');
+const multer = require('multer');
 const cookieParser = require('cookie-parser');
 const mongoose = require('mongoose');
 const MongoStore = require('connect-mongo')(session);
@@ -28,8 +29,9 @@ mongoose.connect('localhost:27017/visionair');
 //add to config sessionKey string
 app.use(cors());
 app.use(morgan('dev'));
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true }));
+
+app.use(bodyParser.json({limit: '50mb'}));
+app.use(bodyParser.urlencoded({ extended: true, limit: '50mb'}));
 app.use(cookieParser());
 app.use(session({
     secret: config.sessionKey,
@@ -56,8 +58,6 @@ app.use(function(req, res, next) {
 });
 
 app.use(compression());
-app.use(cors());
-
 app.use('/', require('./routes'));
 
 const port = process.env.PORT || 8080;

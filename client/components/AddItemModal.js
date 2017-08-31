@@ -8,11 +8,15 @@ class AddItemModal extends Component {
             modal: false,
             successModal: false,
             successMessage: '',
-            newItem: {}
+            newItem: {},
+            fullImage: {},
+            thumbnail: {}
         }
         this.toggle = this.toggle.bind(this);
         this.toggleSuccess = this.toggleSuccess.bind(this);
         this.addItem = this.addItem.bind(this);
+        this.handleImageUpload = this.handleImageUpload.bind(this);
+        this.handleThumbnailUpload = this.handleThumbnailUpload.bind(this);
     } 
     toggle(){
         this.setState({
@@ -28,29 +32,64 @@ class AddItemModal extends Component {
 
     addItem(e){
         e.preventDefault();
-        this.props.auth.fetch(`${this.props.auth.domain}/admin/edit-shop/new-item`, {
+        let images = new FormData();
+        images.append('fullImage', this.state.fullImage)
+        images.append('thumbnail', this.state.thumbnail)
+        this.props.auth.fetch(`${this.props.auth.domain}/admin/edit-shop/upload-item`, {
             method: 'POST',
-            body: JSON.stringify({
-                title: this.title.value,
-                location: this.location.value,
-                price: this.price.value,
-                inventory: this.inventory.value,
-                imagePath: this.imagePath.value
+            enctype: 'multipart/form-data',
+            body: images 
+        })
+            .then(res => {
+                this.props.auth.fetch(`${this.props.auth.domain}/admin/edit-shop/new-item`, {
+                    method: 'POST',
+                    body: JSON.stringify({
+                    title: this.title.value,
+                    location: this.location.value,
+                    price: this.price.value,
+                    inventory: this.inventory.value,
+                    imagePath: `/static/images/${res.fullImageName}`,
+                    thumbnailPath: `static/images/${res.thumbnailName}`
             })
         })
             .then(res => {
-                console.log('add item response', res)
                 this.setState({
                     successMessage: res.message,
                     newItem: res.createdItem
                 })
                 this.props.addItem(res.createdItem);
             })
+
+            })
+
         this.toggleSuccess();
         this.toggle();
     }
 
+    handleImageUpload(e){
+        const reader = new FileReader();
+        const fullImage = e.target.files[0];
+        reader.onload = () => {
+            this.setState({
+                fullImage 
+            })
+        }
+        reader.readAsDataURL(fullImage);
+    }
+
+    handleThumbnailUpload(e){
+        const reader = new FileReader();
+        const thumbnail = e.target.files[0];
+        reader.onload = () => {
+            this.setState({
+                thumbnail
+            })
+        }
+        reader.readAsDataURL(thumbnail);
+    }
+
     render(){
+        console.log('upload items state...', this.state)
         return(
             <div>
                 <Button color="primary" onClick={this.toggle}>Add +</Button>
@@ -74,10 +113,15 @@ class AddItemModal extends Component {
                                 <Label for="add-modal">Inventory:</Label>
                                 <Input type="number" getRef={input=>this.inventory=input}/>
                             </FormGroup>
-                            <FormGroup>
-                                <Label for="add-modal">Image:</Label>
-                                <Input type="text" getRef={input=>this.imagePath=input}/>
+                           <FormGroup> 
+                                <Label for="add-modal">Upload Image</Label>
+                                <Input type="file" name="fullImage" accept="image/*" onChange={this.handleImageUpload}/>
                             </FormGroup>
+                            <FormGroup>
+                                <Label for="add-moadl">Upload Thumbnail</Label>
+                                <Input type="file" name="thumbnail" accept="image/*" onChange={this.handleThumbnailUpload}/>
+                            </FormGroup>
+                            {this.state.imageUrl ? (<img width="60%" height="60%" src={this.state.imagePreviewUrl}/>) : (<p>Image Preview</p>)}
                         </Form>
                     </ModalBody>
                     <ModalFooter>

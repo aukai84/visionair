@@ -93,30 +93,32 @@ class Dashboard extends Component {
         const user = this.props.auth.getProfile()
         const message = this.state.response
         return (
-            <Layout> 
-                <h1>This is the admin page</h1>
-                <p>Current user: {user}</p>
-                <p>Authenticated message: {message}</p>
-                <Button color="primary" onClick={this.logout}>Logout</Button>
-                <AddItemModal addItem={this.addItem} reloadItems={this.reloadItems} {...this.props}/>
-                <Modal isOpen={this.state.modal} toggle={this.toggle} className="delete-modal">
-                    <ModalBody>
-                        {this.state.successMessage}
-                    </ModalBody>
-                    <ModalFooter>
-                        <Button color="primary" onClick={this.toggle}>Close</Button>
-                    </ModalFooter>
-                </Modal>
-                <Container>
-                    <Row>
-                        {this.state.items.map(item => (
-                        <Col xs="12" sm="6" md="6" lg="4" xl="4">
-                            <EditItemModal reloadItems={this.reloadItems} deleteItem={this.deleteItem} editItem={this.editItem} {...this.props} item={item}/>
-                        </Col>
-                        ))}
-                    </Row>
-                </Container>
-            </Layout>
+            <div>
+                <Layout isLoggedIn={this.props.auth.loggedIn()}> 
+                    <h3>This is the admin page</h3>
+                    <p>Current user: {user}</p>
+                    <p>Authenticated message: {message}</p>
+                    <Button color="none" onClick={this.logout}>Logout</Button>
+                    <AddItemModal addItem={this.addItem} reloadItems={this.reloadItems} {...this.props}/>
+                    <Modal isOpen={this.state.modal} toggle={this.toggle} className="delete-modal">
+                        <ModalBody>
+                            {this.state.successMessage}
+                        </ModalBody>
+                        <ModalFooter>
+                            <Button color="primary" onClick={this.toggle}>Close</Button>
+                        </ModalFooter>
+                    </Modal>
+                    <Container>
+                        <Row>
+                            {this.state.items.map(item => (
+                            <Col className="thumbnail-container" xs="12" sm="6" md="6" lg="4" xl="4">
+                                <EditItemModal reloadItems={this.reloadItems} deleteItem={this.deleteItem} editItem={this.editItem} {...this.props} item={item}/>
+                            </Col>
+                            ))}
+                        </Row>
+                    </Container>
+                </Layout>
+            </div>
         )
     }   
 }

@@ -6,35 +6,39 @@ import { Container, Row, Col } from 'reactstrap';
 const Index = (props) => {
     console.log(props);
     return (
-        <Layout>
-            <div width="100%">
-                <img width="100%" src="/static/images/home.jpg"/>
+      <Layout>
+            <div className="home-image-aspect"> 
+                <img className="home-image" width="100%" src="/static/images/home.jpg"/>
             </div>
             <Container>
-                <Row>
-                    <Col>Welcome to Visionair</Col>
-                </Row>
-                <Row>
-                    <Col>Kaneohe, HI</Col>
-                </Row>
-                <Row>
-                    <Col>Drone shots..shotsshotsshots</Col>
-                </Row>
-                <Row>
-                    <Col>Wedding videoss..videossoss</Col>
-                </Row>
-                <Row>
-                    <Col>Beachy Stuff...Vision air</Col>
-                </Row>
+                <div className="home-page-wrapper">
+                    <Row>
+                        <Col className="home-page-info">Welcome to Visionair</Col>
+                    </Row>
+                    <Row>
+                        <Col className="home-page-info">Kaneohe, HI</Col>
+                    </Row>
+                    <Row>
+                        <Col className="home-page-info">Drone shots..shotsshotsshots</Col>
+                    </Row>
+                    <Row>
+                        <Col className="home-page-info">Wedding videoss..videossoss</Col>
+                    </Row>
+                    <Row>
+                        <Col className="home-page-info">Beachy Stuff.....Visionair</Col>
+                    </Row>
+                </div>
                 <Row>
                 {props.items.map(item => (
-                <Col xs="12" sm="6" md="6" lg="6">
+                <Col className="thumbnail-container" xs="12" sm="6" md="6" lg="6">
                     <Link href={`/product?id=${item._id}`}>
-                        <img width="100%" src={item.imagePath}/>
+                        <div className="thumbnail-aspect"> 
+                            <img className="thumbnail-image" width="100%" src={item.imagePath}/>
+                        </div>
                     </Link>
                         <p>{item.title}</p>
                         <p>{item.location}</p>
-                        <p>{item.inventory}</p>
+                        <p>${item.price}</p>
                     </Col>
                 ))}
                 </Row>
