@@ -3,12 +3,16 @@ const path = require('path');
 const session = require('express-session');
 const bodyParser = require('body-parser');
 const multer = require('multer');
+const cookieParser = require('cookie-parser');
 const mongoose = require('mongoose');
+const MongoStore = require('connect-mongo')(session);
 const compression = require('compression');
 const cors = require('cors');
+const helmet = require('helmet');
 const handlebars = require('handlebars');
 const expHbs = require('express-handlebars');
 const morgan = require('morgan');
+const config = require('./config');
 
 const app = express();
 
@@ -22,12 +26,36 @@ mongoose.connect('localhost:27017/visionair');
 
 
 //Express setup~~~~~~~~~~~~~~~~~
+//add to config sessionKey string
 app.use(cors());
 app.use(morgan('dev'));
+
 app.use(bodyParser.json({limit: '50mb'}));
 app.use(bodyParser.urlencoded({ extended: true, limit: '50mb'}));
+app.use(cookieParser());
+app.use(session({
+    secret: config.sessionKey,
+    name: 'sessionId',
+    resave: false,
+    saveUninitialized: false,
+    store: new MongoStore({ mongooseConnection: mongoose.connection }),
+    cookie: {
+        maxAge: 10 * 60 * 1000,
+        httpOnly: true
+    }
+}));
+
+//basic security package. 
+app.use(helmet());
 
 app.use(express.static(path.join(__dirname, 'public')));
+
+app.use(function(req, res, next) {
+    res.setHeader("Pragma", "no-cache");
+    res.setHeader("Expires", "0");
+    res.locals.session = req.session;
+    next();
+});
 
 app.use(compression());
 app.use('/', require('./routes'));
